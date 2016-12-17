@@ -7,11 +7,12 @@ public:
 	Player();
 	~Player();
 
-	void Update(); 
-	void Movement(); 
+	void Update(float deltaTime); 
+	
 
 private : 
-	float moveSpeed = 0.1f;
+	float moveSpeed = 300.f;
+	void Movement(float deltaTime);
 };
 
 

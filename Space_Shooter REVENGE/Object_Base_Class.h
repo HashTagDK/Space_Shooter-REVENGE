@@ -25,6 +25,8 @@ public:
 	sf::RectangleShape rect; 
 	sf::Sprite sprite;
 	sf::Text text;
-	sf::Texture texture;
+	sf::Texture texture; 
+
+	int z;
 };
 
