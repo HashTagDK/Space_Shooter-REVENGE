@@ -9,5 +9,6 @@ public:
 private: 
 	float rotation; 
 	float m_rotationIncrement;
+	sf::Texture destroyAnimationTexture;
 };
 

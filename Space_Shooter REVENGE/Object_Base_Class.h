@@ -27,13 +27,14 @@ public:
 	sf::Text text;
 	sf::Texture texture; 
 	
-	float movemntSpeed; 
+	
 	void Update(float deltaTime);    
 	void Update(float deltaTime, float rotationIncrement);
 	void Update(sf::Vector2f movement);
 private:
 	void Movement(float deltaTime); 
 	void Movement(sf::Vector2f movement);
-	
+protected: 
+	float movemntSpeed;
 };
 

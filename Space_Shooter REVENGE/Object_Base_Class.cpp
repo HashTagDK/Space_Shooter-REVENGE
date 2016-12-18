@@ -12,7 +12,7 @@ Object_Base_Class::~Object_Base_Class()
 }
 
 void Object_Base_Class::Update(float deltaTime) {
-	sprite.setPosition(rect.getPosition());
+	sprite.setPosition( rect.getPosition() );
 	Movement(deltaTime);
 	
 } 

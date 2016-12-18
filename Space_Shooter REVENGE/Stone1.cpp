@@ -21,4 +21,15 @@ Stone1::Stone1()
 
 Stone1::~Stone1()
 {
+	cout << "-Delete_Object<Stone>-\n";
+	rect.setSize(sf::Vector2f(31, 35));
+	//rect.setPosition(300, 300);
+	sprite.setOrigin((rect.getSize().x / 2), (rect.getSize().y / 2));
+	if (!destroyAnimationTexture.loadFromFile("..\\\\sprite\\stone_destroy_animation.png"))
+		cout << "B³a¹d przy wczytywnaiu tekstury";
+	else {
+		sprite.setTexture(destroyAnimationTexture);
+		for(int i=0; i<7; i++)
+			sprite.setTextureRect(sf::IntRect(31*i, 0, 31, 55));
+	}
 } 

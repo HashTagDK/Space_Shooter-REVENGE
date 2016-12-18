@@ -6,7 +6,6 @@ sf::Texture fire_Tile::textureTile;
 fire_Tile::fire_Tile()
 {
 	rect.setSize(sf::Vector2f(9, 19));
-	rect.setPosition(0, 0);
 	sprite.setOrigin((rect.getSize().x/2+5), (rect.getSize().y / 2));
 	if (!textureTile.loadFromFile("..\\\\sprite\\bullet1.png"))
 		cout << "B³¹d przy wczytywaniu textury do byllet1.png!!!!!!"; 
@@ -22,5 +21,17 @@ fire_Tile::fire_Tile()
 
 fire_Tile::~fire_Tile()
 {
+	cout << " -DELETE_OBJECT<FireTILE>- \n"; 
+	/*animation*/
+	/*rect.setSize(sf::Vector2f(31, 35));
+	sprite.setOrigin((rect.getSize().x / 2 + 5), (rect.getSize().y / 2));
+	if (!textureTile.loadFromFile("..\\\\sprite\\stone_destroy_animation.png"))
+		cout << "B³¹d przy wczytywaniu textury do stone_destroy_animation 31 35.png!!!!!!";
+	else {
+		sprite.setTexture(textureTile);
+		for(int i=0; i<7; i++)
+			sprite.setTextureRect(sf::IntRect(31*i, 0, 31, 35));
+		
+	}*/
 } 
 
