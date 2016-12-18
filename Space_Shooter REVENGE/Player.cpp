@@ -13,6 +13,7 @@ Player::Player()
 		sprite.setTexture(texture);
 		sprite.setTextureRect(sf::IntRect(94, 0, 45, 45));
 	}
+	
 }
 
 
@@ -20,12 +21,7 @@ Player::~Player()
 {
 } 
 
-void Player::Update(float deltaTime) {
-	sprite.setPosition(rect.getPosition()); 
-	Movement(deltaTime);
-} 
-
-void Player::Movement(float deltaTime) {
+void Player::setPosition(float deltaTime) {
 	/*movment*/
 	sprite.setTextureRect(sf::IntRect(94, 0, 45, 45));
 	sf::Vector2f move_vector(0, 0);
@@ -44,5 +40,6 @@ void Player::Movement(float deltaTime) {
 			sprite.setTextureRect(sf::IntRect(0, 0, 45, 45));
 		} 
 
-		rect.move(move_vector);
+		//rect.move(move_vector); ]
+		Update(move_vector);
 }

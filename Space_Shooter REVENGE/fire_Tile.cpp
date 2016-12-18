@@ -15,18 +15,12 @@ fire_Tile::fire_Tile()
 		sprite.setTextureRect(sf::IntRect(0, 0, 9, 19));
 		cout << "Stworzona obiekt!";
 	}	
+
+	movemntSpeed = -200.f;
 }
 
 
 fire_Tile::~fire_Tile()
 {
 } 
-void fire_Tile::Update(float deltaTime) {
-	sprite.setPosition(rect.getPosition());  
-	moveForward(deltaTime);
-}
 
-void fire_Tile::moveForward(float deltaTime) { 
-	rect.move(sf::Vector2f(.0f, movmentSpeed*deltaTime));
-}
- 

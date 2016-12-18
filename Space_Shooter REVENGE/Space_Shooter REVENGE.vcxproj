@@ -156,11 +156,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object_Base_Class.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Stone1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fire_Tile.h" />
     <ClInclude Include="Object_Base_Class.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Stone1.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\sprite\bullet1.png" />

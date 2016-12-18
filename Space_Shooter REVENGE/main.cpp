@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
-#include "fire_Tile.h"
+#include "fire_Tile.h" 
+#include "Stone1.h"
 #include <vector>
 #include<iostream>
 
@@ -20,8 +21,11 @@ int main()
 
 	/*--------------FIRE TILE-------------*/ 
 	vector<fire_Tile> fire_Tile_Array; 
-	vector<fire_Tile>::const_iterator iterator_fire;
-	
+	vector<fire_Tile>::const_iterator iterator_fire; 
+
+	/*-----------Stone1-------------------*/
+	Stone1 kamien;
+	kamien.rect.setPosition(sf::Vector2f(100.f, 10.0f));
 	int counter;
 
 	while (window.isOpen())
@@ -34,7 +38,10 @@ int main()
 		} 
 		window.clear();
 		TimeSienceLastUpdate += clock.restart();
-		while (TimeSienceLastUpdate >= TimePerFrame) {
+		while (TimeSienceLastUpdate >= TimePerFrame) { 
+			/*kamien test*/ 
+			kamien.Update(TimePerFrame.asSeconds(), 7.f);
+			
 			/*wyzwalanie fire*/
 			TimeSienceLastUpdate -= TimePerFrame; 
 			TimeSinceLastFire += TimePerFrame;
@@ -56,15 +63,17 @@ int main()
 				}
 				 
 			}
-			player.Update(TimePerFrame.asSeconds());
+			
+			player.setPosition(TimePerFrame.asSeconds());
 		}
 		/*Render()*/
 
 		for (vector<fire_Tile>::iterator it = fire_Tile_Array.begin(); it != fire_Tile_Array.end(); it++) {
 			window.draw((*it).sprite);
 		}
-
+		
 		window.draw(player.sprite);
+		window.draw(kamien.sprite);
 		window.display();
 	}
 
