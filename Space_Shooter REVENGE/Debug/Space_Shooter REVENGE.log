@@ -1,4 +1,3 @@
-﻿  main.cpp
-d:\sfml\space_shooter revenge\space_shooter revenge\main.cpp(31): warning C4101: 'counter': unreferenced local variable
+﻿  Player.cpp
   Space_Shooter REVENGE.vcxproj -> D:\sfml\Space_Shooter REVENGE\Debug\Space_Shooter REVENGE.exe
   Space_Shooter REVENGE.vcxproj -> D:\sfml\Space_Shooter REVENGE\Debug\Space_Shooter REVENGE.pdb (Full PDB)

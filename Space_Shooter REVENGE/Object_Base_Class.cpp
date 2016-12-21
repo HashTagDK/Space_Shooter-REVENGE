@@ -3,34 +3,25 @@
 
 
 Object_Base_Class::Object_Base_Class()
-{
+{  
 }
 
 
 Object_Base_Class::~Object_Base_Class()
 {
+} 
+
+void Object_Base_Class::render(sf::RenderWindow& window_) {
+	window_.draw(sprite);
 }
 
-void Object_Base_Class::Update(float deltaTime) {
+void Object_Base_Class::update(sf::Time deltaTime) {
 	sprite.setPosition( rect.getPosition() );
-	Movement(deltaTime);
-	
+	move(deltaTime);
 } 
 
-void Object_Base_Class::Update(float deltatime, float rotationIncrement) {
-	sprite.setPosition(rect.getPosition()); 
-	Movement(deltatime); 
-	sprite.setRotation(sprite.getRotation() + rotationIncrement);
-}
-
-void Object_Base_Class::Update(sf::Vector2f movement) {
-	sprite.setPosition(rect.getPosition()); 
-	Movement(movement);
-}
-void Object_Base_Class::Movement(float deltaTime) {
-	rect.move(sf::Vector2f(.0f, deltaTime*movemntSpeed));
-} 
-
-void Object_Base_Class::Movement(sf::Vector2f movement) {
-	rect.move(movement);
+void Object_Base_Class::move(sf::Time deltaTime) {
+	move_vector.x *= deltaTime.asSeconds(); 
+	move_vector.y *= deltaTime.asSeconds();
+	rect.move(move_vector);
 }

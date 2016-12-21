@@ -3,6 +3,8 @@
 sf::Texture fire_Tile::textureTile;
 
 
+
+
 fire_Tile::fire_Tile()
 {
 	rect.setSize(sf::Vector2f(9, 19));
@@ -15,7 +17,17 @@ fire_Tile::fire_Tile()
 		cout << "Stworzona obiekt!";
 	}	
 
-	movemntSpeed = -200.f;
+	movementSpeed = -30.f;
+	move_vector.y = movementSpeed;
+}
+
+fire_Tile::fire_Tile(const fire_Tile& fireCopy) {
+	this->rect = fireCopy.rect;
+	this->sprite = fireCopy.sprite; 
+	this->texture = fireCopy.texture;
+	this->movementSpeed = fireCopy.movementSpeed; 
+	this->move_vector = fireCopy.move_vector;
+	this->text = fireCopy.text;
 }
 
 

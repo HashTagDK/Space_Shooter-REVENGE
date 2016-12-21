@@ -28,13 +28,14 @@ public:
 	sf::Texture texture; 
 	
 	
-	void Update(float deltaTime);    
-	void Update(float deltaTime, float rotationIncrement);
-	void Update(sf::Vector2f movement);
+	void update(sf::Time deltaTime);     
+	void render(sf::RenderWindow& window_);
+	float movementSpeed;
+
 private:
-	void Movement(float deltaTime); 
-	void Movement(sf::Vector2f movement);
+	void move(sf::Time deltaTime); 
+	
 protected: 
-	float movemntSpeed;
+	sf::Vector2f move_vector;
 };
 
