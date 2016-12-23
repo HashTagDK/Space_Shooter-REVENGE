@@ -4,6 +4,8 @@
 
 GameScreen::GameScreen()
 {
+	m_stoneFormation.SetSingleStone(sf::Vector2f(50, 10));
+	m_stoneFormation.SetTriangleFormation();
 }
 
 
@@ -20,12 +22,14 @@ void GameScreen::handleInput(sf::RenderWindow& window) {
 void GameScreen::update(sf::Time delta)
 {
 	player_.update(delta);
+	m_stoneFormation.update(delta);
 }
 
 
 	
 
 void GameScreen::render(sf::RenderWindow& window) {
-	player_.render(window);
+	m_stoneFormation.render(window);
+	player_.render(window); 
 }
 

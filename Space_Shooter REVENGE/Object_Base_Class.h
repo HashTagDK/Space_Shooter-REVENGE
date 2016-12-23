@@ -26,16 +26,15 @@ public:
 	sf::Sprite sprite;
 	sf::Text text;
 	sf::Texture texture; 
+	//tymczasowo jest w public- do czasy znaleziania co zeruje move_vector
 	
 	
 	void update(sf::Time deltaTime);     
 	void render(sf::RenderWindow& window_);
 	float movementSpeed;
 
-private:
+protected:
 	void move(sf::Time deltaTime); 
-	
-protected: 
 	sf::Vector2f move_vector;
 };
 

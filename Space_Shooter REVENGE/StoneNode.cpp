@@ -1,27 +1,32 @@
 #include "StoneNode.h"
 
 
+//sf::Texture StoneNode::textureStone;
+
 StoneNode::StoneNode()
 {
 	rect.setSize(sf::Vector2f(39, 25));
-	rect.setPosition(300, 300);
+	//rect.setPosition(position); 
 	sprite.setOrigin((rect.getSize().x / 2), (rect.getSize().y / 2));
-	if (!texture.loadFromFile("..\\\\sprite\\stone.png"))
+	//rect.setPosition(sf::Vector2f(100, 100));
+	/*sprite.setOrigin((rect.getSize().x / 2), (rect.getSize().y / 2));
+	if (!textureStone.loadFromFile("..\\\\sprite\\stone.png"))
 		cout << "B³a¹d przy wczytywnaiu tekstury";
 	else {
-		sprite.setTexture(texture);
+		//cout << "Wczytano stone";
+		sprite.setTexture(textureStone);
 		sprite.setTextureRect(sf::IntRect(27, 20, 39, 25));
-	} 
-	//const float Object_Base_Class::movemntSpeed = 100.f; 
-	rotation = .0f;
-	m_rotationIncrement = 10.f;
+	} */
+
+	m_rotationIncrement = 4.f;
+	movementSpeed = 100.f;
 }
 
 
 StoneNode::~StoneNode()
 {
 	cout << "-Delete_Object<Stone>-\n";
-	rect.setSize(sf::Vector2f(31, 35));
+	/*rect.setSize(sf::Vector2f(31, 35));
 	//rect.setPosition(300, 300);
 	sprite.setOrigin((rect.getSize().x / 2), (rect.getSize().y / 2));
 	if (!destroyAnimationTexture.loadFromFile("..\\\\sprite\\stone_destroy_animation.png"))
@@ -30,5 +35,11 @@ StoneNode::~StoneNode()
 		sprite.setTexture(destroyAnimationTexture);
 		for(int i=0; i<7; i++)
 			sprite.setTextureRect(sf::IntRect(31*i, 0, 31, 55));
-	}
-} 
+	}*/
+}  
+
+
+void StoneNode::rotateStone() {
+	rect.setRotation(rect.getRotation() + m_rotationIncrement); 
+	sprite.setRotation(rect.getRotation());
+}

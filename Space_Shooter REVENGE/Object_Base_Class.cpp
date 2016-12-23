@@ -21,7 +21,7 @@ void Object_Base_Class::update(sf::Time deltaTime) {
 } 
 
 void Object_Base_Class::move(sf::Time deltaTime) {
-	move_vector.x *= deltaTime.asSeconds(); 
-	move_vector.y *= deltaTime.asSeconds();
+	//move_vector.x += deltaTime.asSeconds()*movementSpeed; 
+	move_vector.y = deltaTime.asSeconds()*movementSpeed;
 	rect.move(move_vector);
 }

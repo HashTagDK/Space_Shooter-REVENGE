@@ -17,18 +17,18 @@ fire_Tile::fire_Tile()
 		cout << "Stworzona obiekt!";
 	}	
 
-	movementSpeed = -30.f;
-	move_vector.y = movementSpeed;
+	movementSpeed = -500.f;
+	move_vector = sf::Vector2f(0, 0);
 }
 
-fire_Tile::fire_Tile(const fire_Tile& fireCopy) {
+/*fire_Tile::fire_Tile(const fire_Tile& fireCopy) {
 	this->rect = fireCopy.rect;
 	this->sprite = fireCopy.sprite; 
 	this->texture = fireCopy.texture;
 	this->movementSpeed = fireCopy.movementSpeed; 
 	this->move_vector = fireCopy.move_vector;
 	this->text = fireCopy.text;
-}
+}*/
 
 
 fire_Tile::~fire_Tile()
@@ -45,5 +45,7 @@ fire_Tile::~fire_Tile()
 			sprite.setTextureRect(sf::IntRect(31*i, 0, 31, 35));
 		
 	}*/
-} 
+}  
+
+
 

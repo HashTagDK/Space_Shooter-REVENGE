@@ -160,6 +160,7 @@
     <ClCompile Include="Object_Base_Class.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="StoneFormations.cpp" />
     <ClCompile Include="StoneNode.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +171,7 @@
     <ClInclude Include="Object_Base_Class.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="StoneFormations.h" />
     <ClInclude Include="StoneNode.h" />
   </ItemGroup>
   <ItemGroup>

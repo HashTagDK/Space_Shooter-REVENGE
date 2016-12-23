@@ -42,6 +42,9 @@
     <ClCompile Include="StoneNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StoneFormations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object_Base_Class.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StoneNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StoneFormations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,8 @@
 #include"Screen.h" 
 #include"Player.h"
 #include"fire_Tile.h"
-#include"StoneNode.h"
+//#include"StoneNode.h" 
+#include"StoneFormations.h"
 
 
 class GameScreen : public Screen
@@ -22,5 +23,6 @@ private:
 	Player player_; 
 	 
 	std::vector<StoneNode> stoneVector_;
+	StoneFormations m_stoneFormation;
 };
 
