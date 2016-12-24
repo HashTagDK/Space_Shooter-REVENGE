@@ -20,9 +20,12 @@ public:
 
 private: 
 	//obiketu które bd wyœwietlane w obrêbie tego okna
+	Object_Base_Class backgorund[2];
 	Player player_; 
 	 
 	std::vector<StoneNode> stoneVector_;
-	StoneFormations m_stoneFormation;
+	StoneFormations m_stoneFormation; 
+	
+	void updateBackgorund();
 };
 

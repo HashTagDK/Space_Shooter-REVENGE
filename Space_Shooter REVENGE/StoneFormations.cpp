@@ -4,7 +4,7 @@
 
 StoneFormations::StoneFormations()
 {
-	
+	//stworzenie objektu który bd wstawiany do stoneVector	
 	if (!stoneExample.texture.loadFromFile("..\\\\sprite\\stone.png"))
 		cout << "B³a¹d przy wczytywnaiu tekstury";
 	else {
@@ -19,9 +19,10 @@ StoneFormations::~StoneFormations()
 {
 }
 
-void StoneFormations::SetTriangleFormation() {
+/*------Formations--------------------------*/
+void StoneFormations::SetArrowFormation() {
 	float x = 0; 
-	float y = -150;
+	float y = -240;
 	for (int i = 0; i < 11; i++) {
 		x += 39.f;
 		if (i < 6)
@@ -41,6 +42,42 @@ void StoneFormations::SetSingleStone(sf::Vector2f position){
 	m_stoneVector.push_back(stoneExample);
 }
 
+void StoneFormations::SetBigTriangle() {
+	float x = 0; 
+	float y = -240;
+	float rowAmount = 11;
+
+	for (int i = 0; i < 7; i++){
+		for (int i2 = rowAmount; i2 > -2; i2--) {
+			stoneExample.rect.setRotation(rand() % 180 + 1); 
+			stoneExample.rect.setPosition(sf::Vector2f(x, y)); 
+			m_stoneVector.push_back(stoneExample);
+
+			x += 39.f;
+		} 
+		rowAmount -= 2;
+		y += 50.f;
+		x = (i+1)*39.f;
+	}
+} 
+
+void StoneFormations::SetRandom(levelDificulty level) {
+	float x=0; 
+	float y=-700;
+
+	for (int i = 0; i < 10; i++) {
+		int randomRow = rand() % level + 1;
+		for (randomRow; randomRow > 0; randomRow--) {
+			x = rand() % 460 + 0; 
+			stoneExample.rect.setRotation(rand() % 180 + 1);
+			stoneExample.rect.setPosition(sf::Vector2f(x, y));
+			m_stoneVector.push_back(stoneExample);
+		} 
+
+		y += 70;
+	}
+}
+/*---------Update-----Render----------------*/
 void StoneFormations::update(sf::Time deltaTime) {
 	for (std::vector<StoneNode>::iterator it = m_stoneVector.begin(); it != m_stoneVector.end(); it++) {
 		(*it).rotateStone();
