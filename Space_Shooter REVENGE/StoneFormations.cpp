@@ -4,6 +4,7 @@
 
 StoneFormations::StoneFormations()
 {
+	stoneExample.rect.setSize(sf::Vector2f(39, 25));
 	//stworzenie objektu który bd wstawiany do stoneVector	
 	if (!stoneExample.texture.loadFromFile("..\\\\sprite\\stone.png"))
 		cout << "B³a¹d przy wczytywnaiu tekstury";
@@ -11,7 +12,10 @@ StoneFormations::StoneFormations()
 		//cout << "Wczytano stone";
 		stoneExample.sprite.setTexture(stoneExample.texture);
 		stoneExample.sprite.setTextureRect(sf::IntRect(27, 20, 39, 25));
-	}
+	} 
+
+	if (!stoneExample.m_textureDead.loadFromFile("..\\\\sprite\\coin200.png"))
+		cout << "B³a¹d przy wczytywnaiu tekstury coins 200";
 }
 
 
@@ -82,6 +86,12 @@ void StoneFormations::update(sf::Time deltaTime) {
 	for (std::vector<StoneNode>::iterator it = m_stoneVector.begin(); it != m_stoneVector.end(); it++) {
 		(*it).rotateStone();
 		(*it).update(deltaTime); 
+		(*it).timeFormLastUpdate += deltaTime;
+		if ((*it).m_stateOfObject == Object_Base_Class::Dead && (*it).timeFormLastUpdate.asSeconds() > .05f ) {
+			(*it).animationCoins();
+			(*it).timeFormLastUpdate = sf::Time::Zero;
+		}
+			
 	}
 } 
 

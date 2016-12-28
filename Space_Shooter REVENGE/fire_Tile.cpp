@@ -19,6 +19,7 @@ fire_Tile::fire_Tile()
 
 	movementSpeed = -500.f;
 	move_vector = sf::Vector2f(0, 0);
+	
 }
 
 /*fire_Tile::fire_Tile(const fire_Tile& fireCopy) {
@@ -33,7 +34,7 @@ fire_Tile::fire_Tile()
 
 fire_Tile::~fire_Tile()
 {
-	cout << " -DELETE_OBJECT<FireTILE>- \n"; 
+	//cout << " -DELETE_OBJECT<FireTILE>- \n"; 
 	/*animation*/
 	/*rect.setSize(sf::Vector2f(31, 35));
 	sprite.setOrigin((rect.getSize().x / 2 + 5), (rect.getSize().y / 2));

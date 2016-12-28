@@ -24,10 +24,10 @@ public:
 	void update(sf::Time deltaTime); 
 	void render(sf::RenderWindow &window_);
 
-	
+	vector<StoneNode> m_stoneVector;
 	
 private: 
-	vector<StoneNode> m_stoneVector;
+	
 	StoneNode stoneExample;
 
 };

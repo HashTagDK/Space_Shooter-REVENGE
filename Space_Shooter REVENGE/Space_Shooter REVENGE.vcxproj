@@ -157,6 +157,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MusicController.cpp" />
     <ClCompile Include="Object_Base_Class.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Screen.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="fire_Tile.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="MusicController.h" />
     <ClInclude Include="Object_Base_Class.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Screen.h" />

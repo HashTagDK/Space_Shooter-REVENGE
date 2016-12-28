@@ -4,10 +4,13 @@
 
 Player::Player()
 {
+	hp = 100.f;
+	score = 0;
+
 	move_vector = sf::Vector2f(0, 0);
 	movementSpeed = 500.f;
 	rect.setSize(sf::Vector2f(45, 45)); 
-	rect.setPosition(300, 300); 
+	rect.setPosition(240, 750); 
 	sprite.setOrigin((rect.getSize().x / 2), (rect.getSize().y / 2));
 	if (!texture.loadFromFile("..\\\\sprite\\palyer_lvl1.png"))
 		cout << "B³a¹d przy wczytywnaiu tekstury"; 
@@ -17,7 +20,7 @@ Player::Player()
 	} 
 	
 	timeSienceLastFire = sf::Time::Zero;
-	tilesPerSecond = sf::seconds(1.f);
+	tilesPerSecond = sf::seconds(.25f);
 }
 
 
@@ -30,17 +33,17 @@ void Player::handleInput() {
 	sprite.setTextureRect(sf::IntRect(94, 0, 45, 45));
 	this->move_vector = sf::Vector2f(0, 0);
 	//obs³uga ruchu
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && rect.getPosition().y > 150 ) {
 		this->move_vector.y = -1;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && rect.getPosition().y < 770) {
 		this->move_vector.y = 1;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && rect.getPosition().x < 455) {
 		this->move_vector.x = 1;
 		sprite.setTextureRect(sf::IntRect(188, 0, 45, 45));
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && rect.getPosition().x > 30 ) {
 		this->move_vector.x = -1;
 		sprite.setTextureRect(sf::IntRect(0, 0, 45, 45));
 	} 
@@ -52,17 +55,16 @@ void Player::handleInput() {
 		cout << "J pressed\n";
 		//fireTileVector_.push_back(fireSingle);
 		fireTileVector_.emplace_back();
-		(fireTileVector_.back()).rect.setPosition(this->rect.getPosition());
+		(fireTileVector_.back()).rect.setPosition(this->rect.getPosition()); 
+		musicController.play_fireTileShoot();
 	}
 }  
 
 //tutaj wystêpuje maskowanie funckji update dziedziczonej z Object_Base_Class !!!!!!
-void Player::update(sf::Time deltaTime) {
-	//Object_Base_Class::update(deltaTime);  
+void Player::update(sf::Time deltaTime) { 
+	
 	updatePlayer(deltaTime);
 	for (std::vector<fire_Tile>::iterator it = fireTileVector_.begin(); it != fireTileVector_.end(); it++) {
-		//coœ zeruje move_vecro.y, trzba to znaleŸæ!!!
-		//(*it).move_vector.y = (*it).movementSpeed;
 		(*it).update(deltaTime);
 	}
 }
@@ -85,7 +87,8 @@ void Player::move(sf::Time deltaTime) {
 void Player::updatePlayer(sf::Time deltaTime) {
 	sprite.setPosition(rect.getPosition());
 	move(deltaTime);
-}
+} 
+
 
 
 

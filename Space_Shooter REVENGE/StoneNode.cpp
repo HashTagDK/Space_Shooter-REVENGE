@@ -19,13 +19,16 @@ StoneNode::StoneNode()
 	} */
 
 	m_rotationIncrement = 4.f;
-	movementSpeed = 100.f;
+	movementSpeed = 100.f; 
+	Damage = 10.f; 
+	scoreAmount = 50;
+	timeFormLastUpdate = sf::Time::Zero;
 }
 
 
 StoneNode::~StoneNode()
 {
-	cout << "-Delete_Object<Stone>-\n";
+	//cout << "-Delete_Object<Stone>-\n";
 	/*rect.setSize(sf::Vector2f(31, 35));
 	//rect.setPosition(300, 300);
 	sprite.setOrigin((rect.getSize().x / 2), (rect.getSize().y / 2));
@@ -42,4 +45,11 @@ StoneNode::~StoneNode()
 void StoneNode::rotateStone() {
 	rect.setRotation(rect.getRotation() + m_rotationIncrement); 
 	sprite.setRotation(rect.getRotation());
+}
+
+void StoneNode::animationCoins() {
+	if (animationIncrement > 2)
+		animationIncrement = 0;
+	else animationIncrement++;
+	sprite.setTextureRect(sf::IntRect(16*animationIncrement, 0, 16, 20)); 
 }

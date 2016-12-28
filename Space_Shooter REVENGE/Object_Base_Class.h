@@ -26,15 +26,24 @@ public:
 	sf::Sprite sprite;
 	sf::Text text;
 	sf::Texture texture; 
-	//tymczasowo jest w public- do czasy znaleziania co zeruje move_vector
-	
 	
 	void update(sf::Time deltaTime);     
-	void render(sf::RenderWindow& window_);
+	void render(sf::RenderWindow& window_); 
 	float movementSpeed;
 
+	/* 4 stany w których mo¿e zlaleŸæ siê objekt*/
+	enum stateOfObject {
+		notActive, //stworzony obiekt, poza polem widoku gracza, nie mo¿e wchodizæ w kolizje, position.y < 0 
+		Active, //obiekt mo¿e wchodizæ w kolizje position.y > 0 && position.t < 800
+		Dead,	// obiket zosta³ zniszczony przez player, tutaj mo¿e pojawiæ siê jakiœ bonus, obiekt równie¿ siê porusza ale wolniej albo wcake
+		toErase // obiekt do skasowania - position.y > 800 || obiekt=przeciwnik->bonus zebrany przez player
+	};
+
+	stateOfObject m_stateOfObject;
+	float Damage;
 protected:
 	void move(sf::Time deltaTime); 
-	sf::Vector2f move_vector;
+	sf::Vector2f move_vector; 
+	
 };
 

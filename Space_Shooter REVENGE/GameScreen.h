@@ -5,6 +5,10 @@
 #include"fire_Tile.h"
 //#include"StoneNode.h" 
 #include"StoneFormations.h"
+#include"BoxCollieder.h" 
+#include<string.h> 
+#include"MusicController.h"
+
 
 
 class GameScreen : public Screen
@@ -22,10 +26,24 @@ private:
 	//obiketu które bd wyœwietlane w obrêbie tego okna
 	Object_Base_Class backgorund[2];
 	Player player_; 
-	 
+	BoxCollieder m_boxCollider;
 	std::vector<StoneNode> stoneVector_;
 	StoneFormations m_stoneFormation; 
 	
-	void updateBackgorund();
+	//healt bar
+	sf::Texture healthBarTexture;
+	sf::Sprite healthBarSprite; 
+	sf::RectangleShape healthRectangeShape; 
+	sf::Vector2f sizeOfHealtBar;
+	void updateHealthBar();
+	void updateBackgorund(); 
+	void updateScore();
+	
+	//score 
+	sf::Text m_score;
+	sf::Font m_font; 
+
+	//music 
+	MusicController musicController;
 };
 
