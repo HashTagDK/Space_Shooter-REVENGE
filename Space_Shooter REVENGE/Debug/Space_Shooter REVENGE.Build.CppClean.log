@@ -1,6 +1,5 @@
 d:\sfml\space_shooter revenge\space_shooter revenge\debug\vc140.pdb
 d:\sfml\space_shooter revenge\space_shooter revenge\debug\vc140.idb
-d:\sfml\space_shooter revenge\space_shooter revenge\debug\boxcollieder.obj
 d:\sfml\space_shooter revenge\space_shooter revenge\debug\fire_tile.obj
 d:\sfml\space_shooter revenge\space_shooter revenge\debug\game.obj
 d:\sfml\space_shooter revenge\space_shooter revenge\debug\gamescreen.obj
@@ -10,6 +9,9 @@ d:\sfml\space_shooter revenge\space_shooter revenge\debug\player.obj
 d:\sfml\space_shooter revenge\space_shooter revenge\debug\screen.obj
 d:\sfml\space_shooter revenge\space_shooter revenge\debug\stoneformations.obj
 d:\sfml\space_shooter revenge\space_shooter revenge\debug\stonenode.obj
+d:\sfml\space_shooter revenge\space_shooter revenge\debug\boxcollieder.obj
+d:\sfml\space_shooter revenge\space_shooter revenge\debug\musiccontroller.obj
+d:\sfml\space_shooter revenge\space_shooter revenge\debug\startscreen.obj
 d:\sfml\space_shooter revenge\debug\space_shooter revenge.ilk
 d:\sfml\space_shooter revenge\debug\space_shooter revenge.exe
 d:\sfml\space_shooter revenge\debug\space_shooter revenge.pdb

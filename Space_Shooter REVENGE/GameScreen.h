@@ -1,6 +1,7 @@
 #pragma once 
 #include <SFML/Graphics.hpp>
-#include"Screen.h" 
+#include"Screen.h"  
+#include"GameOVerScreen.h"
 #include"Player.h"
 #include"fire_Tile.h"
 //#include"StoneNode.h" 
@@ -45,5 +46,9 @@ private:
 
 	//music 
 	MusicController musicController;
+
+	void enemyController(sf::Time deltaTime);
+	sf::Time lifeTimeOfGameScreen;
+	int positionInQue;
 };
 

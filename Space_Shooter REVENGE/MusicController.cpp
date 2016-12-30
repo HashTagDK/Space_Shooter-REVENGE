@@ -17,7 +17,8 @@ MusicController::MusicController()
 		std::cout << "Nie wczytano muci loop collect Coin"; 
 	if (!m_playerDamadge.openFromFile("..\\\\music\\SWAV_5.wav"))
 		std::cout << "Nie wcztano music damadgePlayer";
-
+	if (!m_dead.openFromFile("..\\\\music\\dead.wav"))
+		std::cout << "Nie wcztano music dead";
 }
 
 
@@ -50,4 +51,9 @@ void MusicController::play_destroy() {
 void MusicController::play_playerDamadge() {
 	m_playerDamadge.setVolume(100); 
 	m_playerDamadge.play();
+}
+
+void MusicController::play_dead() {
+	m_dead.setVolume(100); 
+	m_dead.play();
 }

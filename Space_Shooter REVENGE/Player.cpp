@@ -46,7 +46,9 @@ void Player::handleInput() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && rect.getPosition().x > 30 ) {
 		this->move_vector.x = -1;
 		sprite.setTextureRect(sf::IntRect(0, 0, 45, 45));
-	} 
+	}  
+
+	
 
 	//obs³uga przycisków ataku
 	timeSienceLastFire += clock.restart();

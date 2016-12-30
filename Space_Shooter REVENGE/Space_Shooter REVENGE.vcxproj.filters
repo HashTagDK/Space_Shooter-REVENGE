@@ -48,6 +48,15 @@
     <ClCompile Include="MusicController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StartScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOVerScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pickUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object_Base_Class.h">
@@ -78,6 +87,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MusicController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOVerScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pickUp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

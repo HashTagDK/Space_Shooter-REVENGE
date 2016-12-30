@@ -13,8 +13,8 @@ public:
 		Normal = 3,
 		Medium = 4,
 		Hard = 6,
-		Brutal = 8,
-		Extrem = 11
+		Brutal = 16,
+		Extrem = 30
 	};
 	void SetArrowFormation();
 	void SetSingleStone(sf::Vector2f position); 

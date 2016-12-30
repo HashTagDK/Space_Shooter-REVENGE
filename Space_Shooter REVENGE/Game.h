@@ -4,7 +4,8 @@
 #include<memory>
 #include <SFML/Graphics.hpp> 
 #include "GameScreen.h"
-
+#include"StartScreen.h"
+#include"GameOVerScreen.h"
 
 class Game
 {
@@ -23,7 +24,7 @@ public:
 
 	/*Wskaünik na interfejs z metodami wirtualnymi*/
 	static std::shared_ptr<Screen> Screen; 
-
+	//void changeScreen()
 private:
 	sf::RenderWindow window_; 
 	

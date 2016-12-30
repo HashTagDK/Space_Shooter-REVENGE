@@ -61,7 +61,8 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 					(*it).rect.setRotation(0);
 					(*it).m_rotationIncrement = .0f;
 					//zmiana tekstury i zmiana rozmiaru rect
-					(*it).rect.setSize(sf::Vector2f(16, 20));
+					//(*it).rect.setSize(sf::Vector2f(16, 20));
+					//(*it).sprite.setTextureRect(sf::IntRect(0, 0))
 					(*it).sprite.setTexture((*it).m_textureDead);  
 
 					musicController.play_destroy();
@@ -77,14 +78,14 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 
 void BoxCollieder::GarbagCollector(vector<fire_Tile> *fireTileVector, vector<StoneNode> *stoneVector) {
 	for (std::vector<StoneNode>::iterator it = (*stoneVector).begin(); it != (*stoneVector).end();) {
-		if ((*it).m_stateOfObject == Object_Base_Class::toErase) {
+		if ((*it).m_stateOfObject == Object_Base_Class::toErase || (*it).rect.getPosition().y  > 830.f) {
 			it = (*stoneVector).erase(it);
 		}
 		else it++;
 	} 
 
 	for (std::vector<fire_Tile>::iterator it = (*fireTileVector).begin(); it != (*fireTileVector).end(); ) {
-		if ((*it).m_stateOfObject == Object_Base_Class::toErase) {
+		if ((*it).m_stateOfObject == Object_Base_Class::toErase || (*it).rect.getPosition().y  < -20.f ) {
 			it = (*fireTileVector).erase(it);
 		} 
 		else it++;

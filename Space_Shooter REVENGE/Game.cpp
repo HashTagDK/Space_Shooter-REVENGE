@@ -4,7 +4,9 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.f / 60.f);
 
 /*ustawiamy Screen aby wskazywa³ na kalsê GameScreem która dziedziczy po Screen 
 	w tej klasie s¹ <MUSZ¥! byæ> zaimplementowane metody czysto wirtualne z interfejsu Screen*/
-std::shared_ptr<Screen> Game::Screen = std::make_shared<GameScreen>();
+//std::shared_ptr<Screen> Game::Screen = std::make_shared<GameScreen>();
+
+std::shared_ptr<Screen> Game::Screen = std::make_shared<StartScreen>();
 
 Game::Game() : window_(sf::VideoMode(Game::Width, Game::Height), "Space_Shooter REVENGE") //lista incjacyjna (Window)
 {

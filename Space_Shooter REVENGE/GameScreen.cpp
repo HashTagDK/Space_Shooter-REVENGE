@@ -43,7 +43,9 @@ GameScreen::GameScreen()
 	m_stoneFormation.SetSingleStone(sf::Vector2f(50, 10));
 	//m_stoneFormation.SetArrowFormation();
 	//m_stoneFormation.SetBigTriangle(); 
-	m_stoneFormation.SetRandom(StoneFormations::Normal);
+	//m_stoneFormation.SetRandom(StoneFormations::veryEasy); 
+	positionInQue = 0;
+	lifeTimeOfGameScreen = sf::Time::Zero;
 }
 
 
@@ -55,6 +57,9 @@ void GameScreen::handleInput(sf::RenderWindow& window) {
 	//tuaj ma byæ wywo³¹nie metody z klasy player, firetile, stone
 	//które trmu odpowiada 
 	player_.handleInput();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)) {
+		Game::Screen = std::make_shared<GameOVerScreen>(player_.score);
+	}
 }
 
 void GameScreen::update(sf::Time delta)
@@ -68,6 +73,13 @@ void GameScreen::update(sf::Time delta)
 	backgorund[1].update(delta); 
 	updateHealthBar(); 
 	updateScore();
+	
+	//enemy
+	enemyController(delta);
+
+	//sprawdzanie czy hp  nie jest poni¿ej 0
+	if (player_.hp <= 0)
+		Game::Screen = std::make_shared<GameOVerScreen>(player_.score);
 }
 
 
@@ -97,4 +109,23 @@ void GameScreen::updateHealthBar() {
 void GameScreen::updateScore() {
 	
 	m_score.setString("Score  " + std::to_string(player_.score));
+} 
+
+void GameScreen::enemyController(sf::Time deltaTime) {
+	lifeTimeOfGameScreen += deltaTime; 
+
+
+	if (positionInQue == 0) {
+		positionInQue++; 
+		m_stoneFormation.SetRandom(StoneFormations::Normal);
+	} 
+	if (positionInQue == 1 && lifeTimeOfGameScreen.asSeconds() > 5.f) {
+		positionInQue++; 
+		m_stoneFormation.SetArrowFormation();
+	}
+
+	/*if (positionInQue == 2 && lifeTimeOfGameScreen.asSeconds() > 10.f) {
+		positionInQue++; 
+		m_stoneFormation.SetRandom(StoneFormations::Hard);
+	}*/
 }
