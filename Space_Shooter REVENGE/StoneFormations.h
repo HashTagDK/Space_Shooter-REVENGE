@@ -1,7 +1,8 @@
 #pragma once 
 #include "StoneNode.h"  
 #include <stdlib.h> 
-#include<vector>
+#include<vector> 
+#include<random>
 class StoneFormations
 {
 public:
@@ -19,7 +20,7 @@ public:
 	void SetArrowFormation();
 	void SetSingleStone(sf::Vector2f position); 
 	void SetBigTriangle(); 
-	void SetRandom(levelDificulty level);
+	void SetRandom(levelDificulty level, int amountOfRow, float spaceBetweenRow);
 
 	void update(sf::Time deltaTime); 
 	void render(sf::RenderWindow &window_);

@@ -1,6 +1,6 @@
 #include "Game.h"
 
-const sf::Time Game::TimePerFrame = sf::seconds(1.f / 60.f);
+const sf::Time Game::TimePerFrame = sf::seconds(1.f / 30.f);
 
 /*ustawiamy Screen aby wskazywa³ na kalsê GameScreem która dziedziczy po Screen 
 	w tej klasie s¹ <MUSZ¥! byæ> zaimplementowane metody czysto wirtualne z interfejsu Screen*/

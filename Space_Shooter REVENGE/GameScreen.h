@@ -9,7 +9,7 @@
 #include"BoxCollieder.h" 
 #include<string.h> 
 #include"MusicController.h"
-
+#include"PickUps.h"
 
 
 class GameScreen : public Screen
@@ -30,6 +30,9 @@ private:
 	BoxCollieder m_boxCollider;
 	std::vector<StoneNode> stoneVector_;
 	StoneFormations m_stoneFormation; 
+
+	//pickUp 
+	PickUps m_pickups;
 	
 	//healt bar
 	sf::Texture healthBarTexture;

@@ -161,6 +161,7 @@
     <ClCompile Include="MusicController.cpp" />
     <ClCompile Include="Object_Base_Class.cpp" />
     <ClCompile Include="pickUp.cpp" />
+    <ClCompile Include="PickUps.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="StartScreen.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="MusicController.h" />
     <ClInclude Include="Object_Base_Class.h" />
     <ClInclude Include="pickUp.h" />
+    <ClInclude Include="PickUps.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="StartScreen.h" />

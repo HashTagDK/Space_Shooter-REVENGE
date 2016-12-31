@@ -4,16 +4,17 @@
 
 StoneFormations::StoneFormations()
 {
-	stoneExample.rect.setSize(sf::Vector2f(39, 25));
+	stoneExample.rect.setSize(sf::Vector2f(61, 29));
 	//stworzenie objektu który bd wstawiany do stoneVector	
 	if (!stoneExample.texture.loadFromFile("..\\\\sprite\\stone.png"))
 		cout << "B³a¹d przy wczytywnaiu tekstury";
 	else {
 		//cout << "Wczytano stone";
 		stoneExample.sprite.setTexture(stoneExample.texture);
-		stoneExample.sprite.setTextureRect(sf::IntRect(27, 20, 39, 25));
+		//stoneExample.sprite.setTextureRect(sf::IntRect(0, 35, 61, 29));
+		stoneExample.sprite.setTextureRect(sf::IntRect(0, (35), 61, 29));
 	} 
-
+	
 	if (!stoneExample.m_textureDead.loadFromFile("..\\\\sprite\\coin200.png"))
 		cout << "B³a¹d przy wczytywnaiu tekstury coins 200";
 }
@@ -65,11 +66,11 @@ void StoneFormations::SetBigTriangle() {
 	}
 } 
 
-void StoneFormations::SetRandom(levelDificulty level) {
+void StoneFormations::SetRandom(levelDificulty level, int aomountOfRow, float spaceBetweenRows) {
 	float x=0; 
-	float y=-700;
+	float y= - (aomountOfRow * spaceBetweenRows) - 800 ;
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < aomountOfRow; i++) {
 		int randomRow = rand() % level + 1;
 		for (randomRow; randomRow > 0; randomRow--) {
 			x = rand() % 460 + 0; 
@@ -78,7 +79,7 @@ void StoneFormations::SetRandom(levelDificulty level) {
 			m_stoneVector.push_back(stoneExample);
 		} 
 
-		y += 70;
+		y += spaceBetweenRows;
 	}
 }
 /*---------Update-----Render----------------*/
@@ -87,8 +88,9 @@ void StoneFormations::update(sf::Time deltaTime) {
 		(*it).rotateStone();
 		(*it).update(deltaTime); 
 		(*it).timeFormLastUpdate += deltaTime;
+		//animation 
 		if ((*it).m_stateOfObject == Object_Base_Class::Dead && (*it).timeFormLastUpdate.asSeconds() > .05f ) {
-			(*it).animationCoins();
+			
 			(*it).timeFormLastUpdate = sf::Time::Zero;
 		}
 			

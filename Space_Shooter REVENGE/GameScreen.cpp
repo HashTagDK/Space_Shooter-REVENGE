@@ -40,12 +40,9 @@ GameScreen::GameScreen()
 	musicController.play_gameLoopMusicStage1();
 
 	//Formations
-	m_stoneFormation.SetSingleStone(sf::Vector2f(50, 10));
-	//m_stoneFormation.SetArrowFormation();
-	//m_stoneFormation.SetBigTriangle(); 
-	//m_stoneFormation.SetRandom(StoneFormations::veryEasy); 
+	//m_stoneFormation.SetSingleStone(sf::Vector2f(50, 10));
 	positionInQue = 0;
-	lifeTimeOfGameScreen = sf::Time::Zero;
+	lifeTimeOfGameScreen = sf::Time::Zero; 
 }
 
 
@@ -64,7 +61,7 @@ void GameScreen::handleInput(sf::RenderWindow& window) {
 
 void GameScreen::update(sf::Time delta)
 {
-	m_boxCollider.DetectCollision(&player_, &m_stoneFormation.m_stoneVector);
+	m_boxCollider.DetectCollision(&player_, &m_stoneFormation.m_stoneVector, &m_pickups.pickUpVector, &m_pickups);
 	player_.update(delta);
 	m_stoneFormation.update(delta);
 	//backgorund
@@ -76,7 +73,8 @@ void GameScreen::update(sf::Time delta)
 	
 	//enemy
 	enemyController(delta);
-
+	// pick ups 
+	m_pickups.Update(delta);
 	//sprawdzanie czy hp  nie jest poni¿ej 0
 	if (player_.hp <= 0)
 		Game::Screen = std::make_shared<GameOVerScreen>(player_.score);
@@ -88,11 +86,15 @@ void GameScreen::update(sf::Time delta)
 void GameScreen::render(sf::RenderWindow& window) {
 	window.draw(backgorund[0].sprite);
 	window.draw(backgorund[1].sprite);
+	
 	m_stoneFormation.render(window);
+	m_pickups.Render(window);
+
 	window.draw(healthRectangeShape);
 	window.draw(healthBarSprite);
+
 	window.draw(m_score);
-	player_.render(window); 
+	player_.render(window);  
 }
 
 void GameScreen::updateBackgorund() {
@@ -117,15 +119,20 @@ void GameScreen::enemyController(sf::Time deltaTime) {
 
 	if (positionInQue == 0) {
 		positionInQue++; 
-		m_stoneFormation.SetRandom(StoneFormations::Normal);
+		m_stoneFormation.SetRandom(StoneFormations::Normal, 10, 10.f);
 	} 
 	if (positionInQue == 1 && lifeTimeOfGameScreen.asSeconds() > 5.f) {
 		positionInQue++; 
 		m_stoneFormation.SetArrowFormation();
 	}
 
-	/*if (positionInQue == 2 && lifeTimeOfGameScreen.asSeconds() > 10.f) {
+	if (positionInQue == 2 && lifeTimeOfGameScreen.asSeconds() > 10.f) {
 		positionInQue++; 
-		m_stoneFormation.SetRandom(StoneFormations::Hard);
-	}*/
+		m_stoneFormation.SetRandom(StoneFormations::Normal, 20, 20.f);
+	} 
+
+	if (positionInQue == 3 && lifeTimeOfGameScreen.asSeconds() > 22.f) {
+		positionInQue++; 
+		m_stoneFormation.SetRandom(StoneFormations::Hard, 15, 50.f);
+	}
 }
