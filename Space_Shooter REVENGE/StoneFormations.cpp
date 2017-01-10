@@ -13,6 +13,7 @@ StoneFormations::StoneFormations()
 		stoneExample.sprite.setTexture(stoneExample.texture);
 		//stoneExample.sprite.setTextureRect(sf::IntRect(0, 35, 61, 29));
 		stoneExample.sprite.setTextureRect(sf::IntRect(0, (35), 61, 29));
+		stoneExample.movementSpeed = 150.f;
 	} 
 	
 	if (!stoneExample.m_textureDead.loadFromFile("..\\\\sprite\\coin200.png"))
@@ -68,7 +69,7 @@ void StoneFormations::SetBigTriangle() {
 
 void StoneFormations::SetRandom(levelDificulty level, int aomountOfRow, float spaceBetweenRows) {
 	float x=0; 
-	float y= - (aomountOfRow * spaceBetweenRows) - 800 ;
+	float y= - (aomountOfRow * (spaceBetweenRows)) - 800 ;
 
 	for (int i = 0; i < aomountOfRow; i++) {
 		int randomRow = rand() % level + 1;
@@ -79,7 +80,7 @@ void StoneFormations::SetRandom(levelDificulty level, int aomountOfRow, float sp
 			m_stoneVector.push_back(stoneExample);
 		} 
 
-		y += spaceBetweenRows;
+		y += spaceBetweenRows + 30;
 	}
 }
 /*---------Update-----Render----------------*/

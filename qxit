@@ -1,0 +1,53 @@
+[33mcommit 4a7f363cbde2d0ddd88d504d8ef0bc462d16ab27[m
+Author: HashTagDK <sawy3r11@gmail.com>
+Date:   Fri Dec 30 10:09:13 2016 +0100
+
+    Crash programu przy wyśiwetlaniu Coin
+
+[33mcommit 6579a75f543b1a58eebc6233bd17e58bae4b9262[m
+Author: HashTagDK <sawy3r11@gmail.com>
+Date:   Wed Dec 28 12:16:46 2016 +0100
+
+    hp bar/ score/ musiccontroller - bangla
+
+[33mcommit e459ff66a5aa57da65dbde58bb0a8adf1dc8e414[m
+Author: HashTagDK <sawy3r11@gmail.com>
+Date:   Sat Dec 24 14:52:33 2016 +0100
+
+    Dodano kilka Formacji kamieni, dodano tło poruszające się
+
+[33mcommit 56b825db9531011dba6134b7cd3fb2c6e705511b[m
+Author: HashTagDK <sawy3r11@gmail.com>
+Date:   Fri Dec 23 22:08:48 2016 +0100
+
+    Dodanie klasy StoneFormation
+
+[33mcommit c66c27d55a64a5b4078b25a66bdc8505552c3cd6[m
+Author: HashTagDK <sawy3r11@gmail.com>
+Date:   Wed Dec 21 12:45:16 2016 +0100
+
+    Dodano interfejs Screen, klasy: ScreenGame, Game
+
+[33mcommit 2cff14cbb35bec4195eb140917aa48681648eb17[m
+Author: HashTagDK <sawy3r11@gmail.com>
+Date:   Sun Dec 18 21:43:50 2016 +0100
+
+    Działa kolizja <usuwa fire_tile, i stone> Bangla kuzwagit add .
+
+[33mcommit 0e7b4fa07f09a857351cf84f388e25780b4d1673[m
+Author: HashTagDK <sawy3r11@gmail.com>
+Date:   Sun Dec 18 15:42:47 2016 +0100
+
+    Modyfikacja klasy bazowej-funckji update/movement. Dodanie obiketu kamien
+
+[33mcommit 8fd476d827bba7591b2767a40d4501248ecd0d58[m
+Author: HashTagDK <sawy3r11@gmail.com>
+Date:   Sat Dec 17 20:24:34 2016 +0100
+
+    Pocisk
+
+[33mcommit 7263858cc3442dbe5c42a46e3cda255ba4cc0bfd[m
+Author: HashTagDK <sawy3r11@gmail.com>
+Date:   Fri Dec 16 20:52:41 2016 +0100
+
+    Start/player/klasa_bazowa

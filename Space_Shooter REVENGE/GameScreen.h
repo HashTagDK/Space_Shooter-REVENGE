@@ -30,6 +30,7 @@ private:
 	BoxCollieder m_boxCollider;
 	std::vector<StoneNode> stoneVector_;
 	StoneFormations m_stoneFormation; 
+	fireTilleController m_fireTilleController;
 
 	//pickUp 
 	PickUps m_pickups;

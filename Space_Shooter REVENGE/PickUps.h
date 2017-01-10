@@ -12,8 +12,15 @@ public:
 	void Update(sf::Time deltaTime);
 
 	std::vector<PickUpNode> pickUpVector;
-private:
-	PickUpNode pickUpCoinExamle;
+	void incrementCounterOfKilledEnemy();
 	
+private:
+	int counterOfKilledEnemy = 0; 
+	int perioidBetweenPickUpDifferentThanCoin = 3; 
+	int previousPickUp = 0;
+	PickUpNode pickUpCoinExamle;
+	PickUpNode pickUpHearthExample;
+	PickUpNode pickUpWeaponUpExample; 
+	PickUpNode pickUpSpeedUpExample;	
 };
 

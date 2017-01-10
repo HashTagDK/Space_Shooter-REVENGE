@@ -12,14 +12,9 @@ public:
 	void rotateStone();
   
 	sf::Texture m_textureDead; 
-	//void animationCoins();
+	
 	sf::Time timeFormLastUpdate;
 	int scoreAmount;
 	float m_rotationIncrement;
-private: 
-	//int animationIncrement = 0;
-	
-	//static sf::Texture destroyAnimationTexture;
-	//static sf::Texture textureStone;
 };
 

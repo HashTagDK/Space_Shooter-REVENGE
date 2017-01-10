@@ -60,6 +60,9 @@
     <ClCompile Include="PickUps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fireTilleController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object_Base_Class.h">
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PickUps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fireTilleController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

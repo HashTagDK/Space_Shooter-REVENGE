@@ -2,10 +2,23 @@
 
 
 
-PickUpNode::PickUpNode()
+PickUpNode::PickUpNode(typeOfPickUp type)
 {
-	m_pAnimationincrement = 0; 
-	m_panimationTime = sf::Time::Zero;
+	m_pType = type;
+
+	m_panimationTime = sf::Time::Zero; 
+	
+	if (type == PickUpNode::Coin) {
+		m_pAnimationincrement = 0; 
+		coin = true; 
+	}
+
+	if (type == PickUpNode::HealthAdd)
+		hP = true;
+	if (type == PickUpNode::SpeedUp)
+		speedUp = true; 
+	if (type == PickUpNode::WeaponUp)
+		weaponUp = true;
 }
 
 
@@ -14,22 +27,26 @@ PickUpNode::~PickUpNode()
 } 
 
 bool PickUpNode::isCoin() {
-	return Coin;
+	return coin;
 } 
 
 bool PickUpNode::isHP() {
-	return HP;
+	return hP;
 } 
 
-bool PickUpNode::isImprovment() {
-	return Improvment;
+bool PickUpNode::isSpeedUp() {
+	return speedUp;
 }
 
-int PickUpNode::getScore() {
+bool PickUpNode::isWeaponAdd() {
+	return weaponUp;
+}
+
+float PickUpNode::getScore() {
 	return m_pScore;
 } 
 
-void PickUpNode::setScoreValue(int score) {
+void PickUpNode::setScoreValue(float score) {
 	m_pScore = score;
 }
 
@@ -37,7 +54,8 @@ void PickUpNode::update(sf::Time deltaTime) {
 	sprite.setPosition(rect.getPosition());
 	move(deltaTime); 
 	
-	animate(deltaTime);
+	if(m_pType == Coin)
+		animate(deltaTime);
 } 
 
 //16 jest na szsytwno do coins

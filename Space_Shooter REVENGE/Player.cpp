@@ -20,7 +20,7 @@ Player::Player()
 	} 
 	
 	timeSienceLastFire = sf::Time::Zero;
-	tilesPerSecond = sf::seconds(.25f);
+	tilesPerSecond = sf::seconds(1.f);
 }
 
 
@@ -50,34 +50,40 @@ void Player::handleInput() {
 
 	
 
-	//obs³uga przycisków ataku
+	//obs³uga przycisków ataku 
+	playerShoot = false;
 	timeSienceLastFire += clock.restart();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::J) && timeSienceLastFire > tilesPerSecond) {
 		timeSienceLastFire = sf::Time::Zero;
 		cout << "J pressed\n";
-		//fireTileVector_.push_back(fireSingle);
-		fireTileVector_.emplace_back();
-		(fireTileVector_.back()).rect.setPosition(this->rect.getPosition()); 
+		/*fireTileVector_.emplace_back();
+		(fireTileVector_.back()).rect.setPosition(this->rect.getPosition()); */ 
+		// wstawiæ coœ co wywo³a w game screen addFireTile 
+		playerShoot = true;
 		musicController.play_fireTileShoot();
 	}
 }  
+
+bool Player::isEnableShoot() {
+	return playerShoot;
+}
 
 //tutaj wystêpuje maskowanie funckji update dziedziczonej z Object_Base_Class !!!!!!
 void Player::update(sf::Time deltaTime) { 
 	
 	updatePlayer(deltaTime);
-	for (std::vector<fire_Tile>::iterator it = fireTileVector_.begin(); it != fireTileVector_.end(); it++) {
+	/*for (std::vector<fire_TileNODE>::iterator it = fireTileVector_.begin(); it != fireTileVector_.end(); it++) {
 		(*it).update(deltaTime);
-	}
+	}*/ 
 }
 
 //maskowanie funckji dziedziczonej render() 
 void Player::render(sf::RenderWindow& window) {
 	Object_Base_Class::render(window); 
 
-	for (std::vector<fire_Tile>::iterator it = fireTileVector_.begin(); it != fireTileVector_.end(); it++) {
+	/*for (std::vector<fire_TileNODE>::iterator it = fireTileVector_.begin(); it != fireTileVector_.end(); it++) {
 		(*it).render(window);
-	}
+	}*/ 
 } 
 
 void Player::move(sf::Time deltaTime) {
@@ -90,6 +96,11 @@ void Player::updatePlayer(sf::Time deltaTime) {
 	sprite.setPosition(rect.getPosition());
 	move(deltaTime);
 } 
+
+void Player::setTilesPerSecond(float decrement) {
+	tilesPerSecond = sf::seconds(tilesPerSecond.asSeconds() - decrement);
+	cout << "tiles per seconds : " << tilesPerSecond.asSeconds() << endl;
+}
 
 
 

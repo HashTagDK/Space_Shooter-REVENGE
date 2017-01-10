@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoxCollieder.cpp" />
+    <ClCompile Include="fireTilleController.cpp" />
     <ClCompile Include="fire_Tile.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOVerScreen.cpp" />
@@ -170,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoxCollieder.h" />
+    <ClInclude Include="fireTilleController.h" />
     <ClInclude Include="fire_Tile.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameOVerScreen.h" />
