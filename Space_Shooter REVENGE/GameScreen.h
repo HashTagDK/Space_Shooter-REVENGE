@@ -10,7 +10,7 @@
 #include<string.h> 
 #include"MusicController.h"
 #include"PickUps.h"
-
+#include"enemyShipController.h"
 
 class GameScreen : public Screen
 {
@@ -31,6 +31,7 @@ private:
 	std::vector<StoneNode> stoneVector_;
 	StoneFormations m_stoneFormation; 
 	fireTilleController m_fireTilleController;
+	enemyShipController m_enemyShipController;
 
 	//pickUp 
 	PickUps m_pickups;

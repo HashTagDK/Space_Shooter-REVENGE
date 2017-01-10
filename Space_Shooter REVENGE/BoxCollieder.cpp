@@ -11,9 +11,9 @@ BoxCollieder::~BoxCollieder()
 {
 }
 
-void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVector, vector<PickUpNode> * pickUps, PickUps * pickUpContoller, fireTilleController *fireTileVector_) {
+void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVector, vector<PickUpNode> * pickUps, PickUps * pickUpContoller, fireTilleController *fireTileVector_, vector<enemyShip1> &enemyShipVector) {
 
-
+	// stone vector-----------------------------------------------------------------------------------------------------------------------------
 	for (std::vector<StoneNode>::iterator it = (*stoneVector).begin(); it != (*stoneVector).end(); it++) {
 		if ((*player).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) && (*it).m_stateOfObject == Object_Base_Class::Active) {
 			cout << "Player oberwa³ !" << endl; 
@@ -23,10 +23,11 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 			cout << "hp: " << (*player).hp << endl;
 			musicController.play_playerDamadge();
 		}
-		//uderzenie fireTile
+		//uderzenie fireTile PLAYER
 		else {
 			for (std::vector<fire_TileNODE>::iterator it2 = (*fireTileVector_).fireTileVector.begin(); it2 != (*fireTileVector_).fireTileVector.end(); it2++) {
-				if ((*it2).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) && (*it).m_stateOfObject == Object_Base_Class::Active ) {
+				//--------PLAYER-----------------------------------------------
+				if ((*it2).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) && (*it).m_stateOfObject == Object_Base_Class::Active && (*it2).getTypeOfFireTile()==fire_TileNODE::playerFireTile ) {
 					cout << "Pocisk trafi³ " << endl;
 					(*it).m_stateOfObject = Object_Base_Class::toErase;
 					(*it2).m_stateOfObject = Object_Base_Class::toErase;
@@ -38,10 +39,55 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 				
 				}
 				
+				
 			}
 		}
 	}
-	// pick ups
+
+	//enemyVector-------------------------------------------------------------------------------------------------------------------------------------
+	for (vector<enemyShip1>::iterator it = enemyShipVector.begin(); it != enemyShipVector.end(); it++) {
+		if ((*player).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) && (*it).m_stateOfObject == Object_Base_Class::Active) {
+			cout << "Player oberwa³ !" << endl;
+			(*it).m_stateOfObject = Object_Base_Class::toErase;
+			(*player).hp -= (*it).Damage;
+			cout << "hp: " << (*player).hp << endl;
+			musicController.play_playerDamadge();
+		}
+
+		for (std::vector<fire_TileNODE>::iterator it2 = (*fireTileVector_).fireTileVector.begin(); it2 != (*fireTileVector_).fireTileVector.end(); it2++) {
+			if ((*it2).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) && (*it).m_stateOfObject == Object_Base_Class::Active && (*it2).getTypeOfFireTile() == fire_TileNODE::playerFireTile) {
+				cout << "Pocisk trafi³ " << endl;
+				
+				(*it2).m_stateOfObject = Object_Base_Class::toErase;
+				//odejmi damage od hp 
+				(*it).decrementHP((*it2).Damage); 
+				if( (*it).getHP() <= 0)
+					(*it).m_stateOfObject = Object_Base_Class::toErase;
+				
+
+				(*pickUpContoller).incrementCounterOfKilledEnemy();
+				// adding pick up
+				(*pickUpContoller).AddPickUp((*it).rect.getPosition());
+				musicController.play_destroy();
+
+			} 
+			
+
+		}
+	} 
+	// fire tile enemy 
+	for (std::vector<fire_TileNODE>::iterator it2 = (*fireTileVector_).fireTileVector.begin(); it2 != (*fireTileVector_).fireTileVector.end(); it2++) {
+		//ENEMY fireTILE----------------------------------------------
+		//to bd tylko raz deklarowane bo jest wspólny vektor dla fireTile przeciwników i player 
+		if ((*it2).rect.getGlobalBounds().intersects((*player).rect.getGlobalBounds()) && (*it2).getTypeOfFireTile() == fire_TileNODE::enemyFiretile) {
+			cout << "***Pocisk trafi³ playera****" << endl;
+			(*it2).m_stateOfObject = Object_Base_Class::toErase;
+
+			musicController.play_playerDamadge();
+			(*player).hp -= (*it2).Damage;
+		}
+	}
+	// pick ups---------------------------------------------------------------------------------------------------------------------------------------
 	for (std::vector<PickUpNode>::iterator it = (*pickUps).begin(); it != (*pickUps).end(); it++) {
 		if ((*player).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds())) {
 			(*it).m_stateOfObject = Object_Base_Class::toErase;
@@ -74,10 +120,10 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 		}
 	}
 
-	GarbagCollector(&(*fireTileVector_).fireTileVector, &(*stoneVector), &(*pickUps));
+	GarbagCollector(&(*fireTileVector_).fireTileVector, &(*stoneVector), &(*pickUps), enemyShipVector);
 }
 
-void BoxCollieder::GarbagCollector(vector<fire_TileNODE> *fireTileVector, vector<StoneNode> *stoneVector, vector<PickUpNode> *pickUp) {
+void BoxCollieder::GarbagCollector(vector<fire_TileNODE> *fireTileVector, vector<StoneNode> *stoneVector, vector<PickUpNode> *pickUp, vector<enemyShip1> &enemyShipVector) {
 	for (std::vector<StoneNode>::iterator it = (*stoneVector).begin(); it != (*stoneVector).end();) {
 		if ((*it).m_stateOfObject == Object_Base_Class::toErase || (*it).rect.getPosition().y  > 830.f) {
 			it = (*stoneVector).erase(it);
@@ -96,5 +142,12 @@ void BoxCollieder::GarbagCollector(vector<fire_TileNODE> *fireTileVector, vector
 		if ((*it).m_stateOfObject == Object_Base_Class::toErase || (*it).rect.getPosition().y > 830.f)
 			it = (*pickUp).erase(it); 
 		else it++;
+	} 
+
+	for (vector<enemyShip1>::iterator it = enemyShipVector.begin(); it != enemyShipVector.end(); ) {
+		if ((*it).m_stateOfObject == Object_Base_Class::toErase || (*it).rect.getPosition().y > 900.f)
+			it = enemyShipVector.erase(it);
+		else
+			it++;
 	}
 }

@@ -6,7 +6,7 @@ sf::Texture fire_TileNODE::textureTile;
 
 
 fire_TileNODE::fire_TileNODE(typeOFFireTile TYPE) :
-	typeFire(TYPE)
+	m_ptypeFire(TYPE)
 {
 	rect.setSize(sf::Vector2f(9, 19));
 	sprite.setOrigin((rect.getSize().x/2+5), (rect.getSize().y / 2));
@@ -19,15 +19,15 @@ fire_TileNODE::fire_TileNODE(typeOFFireTile TYPE) :
 		cout << "Stworzona obiekt!";
 	}	
 
-	if (typeFire == playerFireTile) {
+	if (m_ptypeFire == playerFireTile) {
 		movementSpeed = -500.f;
 	}
-	else if (typeFire = enemyFiretile) {
+	else if (m_ptypeFire = enemyFiretile) {
 		movementSpeed = 200.f;
 	}
 	
 	move_vector = sf::Vector2f(0, 0);
-	
+	Damage = 25;
 }
 
 /*fire_Tile::fire_Tile(const fire_Tile& fireCopy) {
@@ -57,7 +57,7 @@ fire_TileNODE::~fire_TileNODE()
 }   
 
 fire_TileNODE::typeOFFireTile fire_TileNODE::getTypeOfFireTile() {
-	return typeFire;
+	return m_ptypeFire;
 }
 
 

@@ -16,6 +16,6 @@ private:
 	float damadge = .5f;
 	static sf::Texture textureTile;
 	static int i;
-	typeOFFireTile typeFire;
+	typeOFFireTile m_ptypeFire;
 };
 

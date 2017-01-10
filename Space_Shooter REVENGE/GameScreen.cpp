@@ -61,7 +61,7 @@ void GameScreen::handleInput(sf::RenderWindow& window) {
 
 void GameScreen::update(sf::Time delta)
 {
-	m_boxCollider.DetectCollision(&player_, &m_stoneFormation.m_stoneVector, &m_pickups.pickUpVector, &m_pickups, &m_fireTilleController);
+	m_boxCollider.DetectCollision(&player_, &m_stoneFormation.m_stoneVector, &m_pickups.pickUpVector, &m_pickups, &m_fireTilleController, m_enemyShipController.enemyShipVector);
 	player_.update(delta);
 	m_stoneFormation.update(delta);
 	//backgorund
@@ -77,8 +77,10 @@ void GameScreen::update(sf::Time delta)
 	m_pickups.Update(delta); 
 	//fireTile  
 	if (player_.isEnableShoot())
-		m_fireTilleController.AddFireTile(player_.rect.getPosition(), fire_TileNODE::enemyFiretile);
+		m_fireTilleController.AddFireTile(player_.rect.getPosition(), fire_TileNODE::playerFireTile);
 	m_fireTilleController.update(delta);
+	//enemyController-------------------------------------- 
+	m_enemyShipController.update(delta, m_fireTilleController);
 	//sprawdzanie czy hp  nie jest poni¿ej 0
 	if (player_.hp <= 0)
 		Game::Screen = std::make_shared<GameOVerScreen>(player_.score);
@@ -94,6 +96,7 @@ void GameScreen::render(sf::RenderWindow& window) {
 	m_stoneFormation.render(window);
 	m_pickups.Render(window); 
 	m_fireTilleController.render(window);
+	m_enemyShipController.render(window);
 
 	window.draw(healthRectangeShape);
 	window.draw(healthBarSprite);
@@ -121,7 +124,12 @@ void GameScreen::updateScore() {
 void GameScreen::enemyController(sf::Time deltaTime) {
 	lifeTimeOfGameScreen += deltaTime; 
 
-
+	if (positionInQue == 0) {
+		positionInQue++;
+		m_enemyShipController.AddSingleEnemy(sf::Vector2f(100.f, 50.f));
+	}
+	
+	/*
 	if (positionInQue == 0) {
 		positionInQue++; 
 		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 150.f);
