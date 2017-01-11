@@ -125,28 +125,62 @@ void GameScreen::enemyController(sf::Time deltaTime) {
 	lifeTimeOfGameScreen += deltaTime; 
 
 	if (positionInQue == 0) {
-		positionInQue++;
-		m_enemyShipController.AddSingleEnemy(sf::Vector2f(100.f, 50.f));
-	}
-	
-	/*
-	if (positionInQue == 0) {
 		positionInQue++; 
-		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 150.f);
+		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 250.f); 
 	} 
 	
-	if (positionInQue == 1 && lifeTimeOfGameScreen.asSeconds() > 5.f) {
+	if (positionInQue == 1 && lifeTimeOfGameScreen.asSeconds() > 10.f) {
 		positionInQue++; 
-		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 30);
-	}
-	/*
-if (positionInQue == 2 && lifeTimeOfGameScreen.asSeconds() > 10.f) {
-		positionInQue++; 
-		m_stoneFormation.SetRandom(StoneFormations::Normal, 20, 20.f);
+		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 180);
 	} 
-
+	if (positionInQue == 2 && lifeTimeOfGameScreen.asSeconds() > 15.f) {
+		positionInQue++; 
+	}
 	if (positionInQue == 3 && lifeTimeOfGameScreen.asSeconds() > 22.f) {
 		positionInQue++; 
-		m_stoneFormation.SetRandom(StoneFormations::Hard, 15, 50.f);
-	}*/
+		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 150);
+	} 
+
+	if (positionInQue == 4 && lifeTimeOfGameScreen.asSeconds() > 30.f) {
+		positionInQue++; 
+		m_stoneFormation.SetRandom(StoneFormations::Easy, 5, 200.f);
+	} 
+
+	if (positionInQue == 5 && lifeTimeOfGameScreen.asSeconds() > 40) {
+		positionInQue++;
+		m_stoneFormation.SetArrowFormation(200, 5);
+	}
+
+	if (positionInQue == 6 && lifeTimeOfGameScreen.asSeconds() > 50) {
+		positionInQue++; 
+		m_enemyShipController.AddSingleEnemy(sf::Vector2f(150, -200));
+		m_enemyShipController.AddSingleEnemy(sf::Vector2f(300, -200));
+	}
+	
+	
+	if (positionInQue == 7 && lifeTimeOfGameScreen.asSeconds() > 55.f) {
+		positionInQue++; 
+		m_enemyShipController.SetRandom(2, 6, 80.f);
+	}  
+
+	if (positionInQue == 8 && lifeTimeOfGameScreen.asSeconds() > 65.f) {
+		positionInQue++;
+		m_enemyShipController.SetRandom(3, 5, 120.f);
+	} 
+	if (positionInQue == 9 && lifeTimeOfGameScreen.asSeconds() > 80.f) {
+		positionInQue++;
+		m_stoneFormation.SetRandom(StoneFormations::Normal, 10, 200.f);
+	}
+
+	if (positionInQue == 10 && lifeTimeOfGameScreen.asSeconds() > 100.f) {
+		positionInQue++; 
+		m_stoneFormation.SetArrowFormation(100, 8);
+	} 
+
+	if (positionInQue == 11 && lifeTimeOfGameScreen.asSeconds() > 110.f) {
+		positionInQue++; 
+		m_stoneFormation.SetRandom(StoneFormations::Hard, 5, 200.f);
+	}
+	
+
 }

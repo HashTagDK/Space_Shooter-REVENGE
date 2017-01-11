@@ -12,7 +12,8 @@ public:
 	
 	std::vector<enemyShip1> enemyShipVector;
 	//Enemy formation 
-	void AddSingleEnemy( sf::Vector2f position );
+	void AddSingleEnemy( sf::Vector2f position ); 
+	void SetRandom(int amountInRow, int aomountOfRow, float spaceBetweenRows);
 private: 
 	enemyShip1 enemyExample;
 	void AddEnemy(sf::Vector2f position);

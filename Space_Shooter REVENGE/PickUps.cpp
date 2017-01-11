@@ -45,7 +45,7 @@ PickUps::PickUps() :
 		pickUpWeaponUpExample.m_stateOfObject = Object_Base_Class::Active;
 		pickUpWeaponUpExample.movementSpeed = 70.f;
 
-		pickUpWeaponUpExample.setScoreValue(.2f);
+		pickUpWeaponUpExample.setScoreValue(.1f);
 		cout << "weapon++";
 	} 
 	/*--------------------Speed-UP---------------------------------------------*/

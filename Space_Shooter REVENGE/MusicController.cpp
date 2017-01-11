@@ -28,32 +28,32 @@ MusicController::~MusicController()
 
 void MusicController::play_gameLoopMusicStage1(){
 	m_gameLoopMusicStage1.setVolume(70);
-	m_gameLoopMusicStage1.setLoop(true);
+	//m_gameLoopMusicStage1.setLoop(true);
 
-	m_gameLoopMusicStage1.play();
+	//m_gameLoopMusicStage1.play();
 }
 
 void MusicController::play_collectCoins() {
 	m_collectCoin.setVolume(90); 
-	m_collectCoin.play();
+	//m_collectCoin.play();
 } 
 
 void MusicController::play_fireTileShoot() {
 	m_fireTileShoot.setVolume(100); 
-	m_fireTileShoot.play();
+	//m_fireTileShoot.play();
 }
 
 void MusicController::play_destroy() {
 	m_destroy.setVolume(90); 
-	m_destroy.play();
+	//m_destroy.play();
 }
 
 void MusicController::play_playerDamadge() {
 	m_playerDamadge.setVolume(100); 
-	m_playerDamadge.play();
+	//m_playerDamadge.play();
 }
 
 void MusicController::play_dead() {
 	m_dead.setVolume(100); 
-	m_dead.play();
+	//m_dead.play();
 }

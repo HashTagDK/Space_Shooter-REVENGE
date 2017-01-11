@@ -5,7 +5,7 @@
 enemyShip1::enemyShip1()
 { 
 	move_vector = sf::Vector2f(0, 0);
-	movementSpeed = 50.f;
+	movementSpeed = 100.f;
 	rect.setSize(sf::Vector2f(100, 50));
 	//rect.setPosition(240, 750);
 	//sprite.setOrigin((rect.getSize().x / 2), (rect.getSize().y / 2));

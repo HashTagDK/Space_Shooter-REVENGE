@@ -4,7 +4,7 @@
 
 enemyShipController::enemyShipController()
 {
-	timeBetweenShoot = sf::seconds(1.f);
+	timeBetweenShoot = sf::seconds(2.f);
 }
 
 
@@ -12,6 +12,7 @@ enemyShipController::~enemyShipController()
 {
 }
 
+//Dodawanie strza³ów enemy 
 void enemyShipController::update(sf::Time deltaTime, fireTilleController& fireTileController) {
 	for (std::vector<enemyShip1>::iterator it = enemyShipVector.begin(); it != enemyShipVector.end(); it++) {
 		(*it).timeFromLastShoot += deltaTime; 
@@ -42,7 +43,46 @@ void enemyShipController::AddEnemy(sf::Vector2f position) {
 
 //FORMATIONS-------------------------------------------------------------------- 
 
+/*	Single Enemy */
 void enemyShipController::AddSingleEnemy(sf::Vector2f position) {
 	AddEnemy(position);
 	cout << "okoñ";
+} 
+
+/*	*/
+void enemyShipController::SetRandom(int amountInRow, int aomountOfRow, float spaceBetweenRows) {
+	amountInRow %= 5; 
+	//sf::Vector2f positionE = sf::Vector2f(0, 0);
+	struct positions {
+		sf::Vector2f position;
+		bool isCover = false;
+	}pos[4];
+	//position ; 
+	float y = -(aomountOfRow * (spaceBetweenRows));
+	for (int i = 0; i < 4; i++)
+		pos[i].position = sf::Vector2f(i * 125, y);
+
+	int x = 0;
+	
+
+	for (int i = 0; i < aomountOfRow; i++) {
+		int randomRow = rand() % amountInRow + 1;
+		for (randomRow; randomRow > 0; randomRow--) {
+			do {
+				x = rand() % 4 + 0;
+			} while (pos[x].isCover);
+			pos[x].isCover = true; 
+			if (x == 0 || x == 3)
+				AddEnemy(pos[x].position);
+			else
+				AddEnemy( sf::Vector2f(pos[x].position.x + rand() % 100 + 0, pos[x].position.y + rand() % 50 + 1) );
+			
+		}
+		y += spaceBetweenRows;
+		for (int i2 = 0; i2 < 4; i2++) {
+			pos[i2].isCover = false; 
+			pos[i2].position.y += spaceBetweenRows;
+		}
+			
+	}
 }

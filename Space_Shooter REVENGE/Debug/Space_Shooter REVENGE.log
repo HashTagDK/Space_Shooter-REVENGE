@@ -1,5 +1,4 @@
-﻿  BoxCollieder.cpp
-d:\sfml\space_shooter revenge\space_shooter revenge\boxcollieder.cpp(63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-d:\sfml\space_shooter revenge\space_shooter revenge\boxcollieder.cpp(99): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+﻿  GameScreen.cpp
+d:\sfml\space_shooter revenge\space_shooter revenge\gamescreen.cpp(25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Space_Shooter REVENGE.vcxproj -> D:\sfml\Space_Shooter REVENGE\Debug\Space_Shooter REVENGE.exe
   Space_Shooter REVENGE.vcxproj -> D:\sfml\Space_Shooter REVENGE\Debug\Space_Shooter REVENGE.pdb (Full PDB)

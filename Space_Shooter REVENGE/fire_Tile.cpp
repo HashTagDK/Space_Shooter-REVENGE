@@ -8,7 +8,7 @@ sf::Texture fire_TileNODE::textureTile;
 fire_TileNODE::fire_TileNODE(typeOFFireTile TYPE) :
 	m_ptypeFire(TYPE)
 {
-	rect.setSize(sf::Vector2f(9, 19));
+	rect.setSize(sf::Vector2f(9, 20));
 	sprite.setOrigin((rect.getSize().x/2+5), (rect.getSize().y / 2));
 	
 	if (!textureTile.loadFromFile("..\\\\sprite\\bullet1.png"))

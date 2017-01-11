@@ -26,15 +26,17 @@ StoneFormations::~StoneFormations()
 }
 
 /*------Formations--------------------------*/
-void StoneFormations::SetArrowFormation() {
+void StoneFormations::SetArrowFormation(float spaceBeetweenm, int numberOfRows) {
 	float x = 0; 
-	float y = -240;
-	for (int i = 0; i < 11; i++) {
-		x += 39.f;
-		if (i < 6)
-			y += 30;
-		else
-			y -= 30;
+	float y = 0; 
+	y -= spaceBeetweenm*numberOfRows; 
+	numberOfRows *= 2;
+	for (int i = 0; i < numberOfRows; i++) {
+		x += 480.f / numberOfRows;
+		if (i < (numberOfRows/2) && i!=0)
+			y += spaceBeetweenm;
+		else if( i!=0 )
+			y -= spaceBeetweenm;
 		
 		//m_stoneVector.emplace_back(sf::Vector2f(x, y));  
 		stoneExample.rect.setRotation(rand() % 180 + 1);
@@ -69,7 +71,7 @@ void StoneFormations::SetBigTriangle() {
 
 void StoneFormations::SetRandom(levelDificulty level, int aomountOfRow, float spaceBetweenRows) {
 	float x=0; 
-	float y= - (aomountOfRow * (spaceBetweenRows)) - 800 ;
+	float y= - (aomountOfRow * (spaceBetweenRows));
 
 	for (int i = 0; i < aomountOfRow; i++) {
 		int randomRow = rand() % level + 1;
