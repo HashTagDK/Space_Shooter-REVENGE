@@ -25,9 +25,13 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 		}
 		//uderzenie fireTile PLAYER
 		else {
-			for (std::vector<fire_TileNODE>::iterator it2 = (*fireTileVector_).fireTileVector.begin(); it2 != (*fireTileVector_).fireTileVector.end(); it2++) {
+			for (std::vector<fire_TileNODE>::iterator it2 = (*fireTileVector_).fireTileVector.begin(); 
+					it2 != (*fireTileVector_).fireTileVector.end(); it2++) {
 				//--------PLAYER-----------------------------------------------
-				if ((*it2).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) && (*it).m_stateOfObject == Object_Base_Class::Active && (*it2).getTypeOfFireTile()==fire_TileNODE::playerFireTile ) {
+				if ((*it2).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) && 
+					(*it).m_stateOfObject == Object_Base_Class::Active && 
+					(*it2).getTypeOfFireTile()==fire_TileNODE::playerFireTile ) 
+				{
 					cout << "Pocisk trafi³ " << endl;
 					(*it).m_stateOfObject = Object_Base_Class::toErase;
 					(*it2).m_stateOfObject = Object_Base_Class::toErase;
@@ -53,16 +57,21 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 			cout << "hp: " << (*player).hp << endl;
 			musicController.play_playerDamadge();
 		}
-
+		//fireTile playera kolizje z przeciwnikami
 		for (std::vector<fire_TileNODE>::iterator it2 = (*fireTileVector_).fireTileVector.begin(); it2 != (*fireTileVector_).fireTileVector.end(); it2++) {
-			if ((*it2).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) && (*it).m_stateOfObject == Object_Base_Class::Active && (*it2).getTypeOfFireTile() == fire_TileNODE::playerFireTile) {
+			if ((*it2).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) 
+				&& (*it).m_stateOfObject == Object_Base_Class::Active 
+				&& (*it2).getTypeOfFireTile() == fire_TileNODE::playerFireTile) {
 				cout << "Pocisk trafi³ " << endl;
 				
 				(*it2).m_stateOfObject = Object_Base_Class::toErase;
 				//odejmi damage od hp 
 				(*it).decrementHP((*it2).Damage); 
-				if( (*it).getHP() <= 0)
+				if ((*it).getHP() <= 0) {
 					(*it).m_stateOfObject = Object_Base_Class::toErase;
+					cout << "!!!!!!!!!!!!!!!--DEAD BOSSS--!!!!!!!!!!!!";
+				}
+					
 				
 
 				(*pickUpContoller).incrementCounterOfKilledEnemy();
@@ -124,6 +133,7 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 }
 
 void BoxCollieder::GarbagCollector(vector<fire_TileNODE> *fireTileVector, vector<StoneNode> *stoneVector, vector<PickUpNode> *pickUp, vector<enemyShip1> &enemyShipVector) {
+	bool destroy = false;
 	for (std::vector<StoneNode>::iterator it = (*stoneVector).begin(); it != (*stoneVector).end();) {
 		if ((*it).m_stateOfObject == Object_Base_Class::toErase || (*it).rect.getPosition().y  > 830.f) {
 			it = (*stoneVector).erase(it);
@@ -145,9 +155,13 @@ void BoxCollieder::GarbagCollector(vector<fire_TileNODE> *fireTileVector, vector
 	} 
 
 	for (vector<enemyShip1>::iterator it = enemyShipVector.begin(); it != enemyShipVector.end(); ) {
-		if ((*it).m_stateOfObject == Object_Base_Class::toErase || (*it).rect.getPosition().y > 900.f)
-			it = enemyShipVector.erase(it);
+		if ((*it).m_stateOfObject == Object_Base_Class::toErase || (*it).rect.getPosition().y > 900.f) {
+			it = enemyShipVector.erase(it); 
+			cout << "\n ********************Ereasing!***************";
+		} 			
 		else
 			it++;
-	}
+	} 
+
+	
 }

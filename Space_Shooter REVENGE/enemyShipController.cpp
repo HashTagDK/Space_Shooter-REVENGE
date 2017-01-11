@@ -1,10 +1,12 @@
 #include "enemyShipController.h"
 
 
-
-enemyShipController::enemyShipController()
+// przy bosie nie nie trzeba inicjowaæ typu, bo posiada on swoj¹ listê incjacyjn¹ która ma type=Boss1
+enemyShipController::enemyShipController() : 
+	enemyExample( enemyShip1::basicTYPE )
 {
-	timeBetweenShoot = sf::seconds(2.f);
+	timeBetweenShoot = sf::seconds(2.f); 
+	
 }
 
 
@@ -13,10 +15,10 @@ enemyShipController::~enemyShipController()
 }
 
 //Dodawanie strza³ów enemy 
-void enemyShipController::update(sf::Time deltaTime, fireTilleController& fireTileController) {
+void enemyShipController::update(sf::Time deltaTime, fireTilleController& fireTileController, sf::Vector2f playerPosition) {
 	for (std::vector<enemyShip1>::iterator it = enemyShipVector.begin(); it != enemyShipVector.end(); it++) {
 		(*it).timeFromLastShoot += deltaTime; 
-		if ((*it).timeFromLastShoot > timeBetweenShoot) {
+		if ( (*it).timeFromLastShoot > timeBetweenShoot && (*it).getTypeOfEnemy() == enemyShip1::basicTYPE ) {
 			sf::Vector2f position = (*it).rect.getPosition();
 			sf::Vector2f size = (*it).rect.getSize();
 			position +=sf::Vector2f( (size.x/2 + 5.f), size.y/2);
@@ -28,17 +30,22 @@ void enemyShipController::update(sf::Time deltaTime, fireTilleController& fireTi
 		(*it).update(deltaTime); 
 
 	}
-		
+	enemyBoss.setFire(deltaTime, fireTileController);
+	// pod¹¿anie za playerem! 
+	enemyBoss.updateBossPosition(playerPosition, deltaTime);
+	enemyBoss.update(deltaTime);
 }
 
 void enemyShipController::render(sf::RenderWindow& window_) {
 	for (std::vector<enemyShip1>::iterator it = enemyShipVector.begin(); it != enemyShipVector.end(); it++)
 		(*it).render(window_);
+	//Boss 
+	enemyBoss.render(window_);
 }
 
 void enemyShipController::AddEnemy(sf::Vector2f position) {
 	enemyShipVector.push_back(enemyExample);
-	enemyShipVector.back().rect.setPosition(position);
+	enemyShipVector.back().rect.setPosition(position); 
 } 
 
 //FORMATIONS-------------------------------------------------------------------- 
@@ -85,4 +92,9 @@ void enemyShipController::SetRandom(int amountInRow, int aomountOfRow, float spa
 		}
 			
 	}
+} 
+
+//adding boss 
+void enemyShipController::AddBoss() {
+	enemyShipVector.push_back(enemyBoss); 
 }

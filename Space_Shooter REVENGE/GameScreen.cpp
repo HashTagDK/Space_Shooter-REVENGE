@@ -80,7 +80,7 @@ void GameScreen::update(sf::Time delta)
 		m_fireTilleController.AddFireTile(player_.rect.getPosition(), fire_TileNODE::playerFireTile);
 	m_fireTilleController.update(delta);
 	//enemyController-------------------------------------- 
-	m_enemyShipController.update(delta, m_fireTilleController);
+	m_enemyShipController.update(delta, m_fireTilleController, player_.rect.getPosition());
 	//sprawdzanie czy hp  nie jest poni¿ej 0
 	if (player_.hp <= 0)
 		Game::Screen = std::make_shared<GameOVerScreen>(player_.score);
@@ -126,9 +126,11 @@ void GameScreen::enemyController(sf::Time deltaTime) {
 
 	if (positionInQue == 0) {
 		positionInQue++; 
-		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 250.f); 
+		//m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 250.f);  
+
+		//m_enemyShipController.AddBoss();
 	} 
-	
+	/*
 	if (positionInQue == 1 && lifeTimeOfGameScreen.asSeconds() > 10.f) {
 		positionInQue++; 
 		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 180);
@@ -180,7 +182,6 @@ void GameScreen::enemyController(sf::Time deltaTime) {
 	if (positionInQue == 11 && lifeTimeOfGameScreen.asSeconds() > 110.f) {
 		positionInQue++; 
 		m_stoneFormation.SetRandom(StoneFormations::Hard, 5, 200.f);
-	}
+	}*/
 	
-
 }

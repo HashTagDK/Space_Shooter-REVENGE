@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoxCollieder.cpp" />
+    <ClCompile Include="enemyBOSS.cpp" />
     <ClCompile Include="enemyShip1.cpp" />
     <ClCompile Include="enemyShipController.cpp" />
     <ClCompile Include="fireTilleController.cpp" />
@@ -173,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoxCollieder.h" />
+    <ClInclude Include="enemyBOSS.h" />
     <ClInclude Include="enemyShip1.h" />
     <ClInclude Include="enemyShipController.h" />
     <ClInclude Include="fireTilleController.h" />
