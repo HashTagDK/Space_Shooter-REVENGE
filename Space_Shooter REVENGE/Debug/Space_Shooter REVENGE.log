@@ -1,4 +1,7 @@
-﻿  GameScreen.cpp
+﻿  enemyBOSS.cpp
+d:\sfml\space_shooter revenge\space_shooter revenge\enemyboss.cpp(71): warning C4305: '=': truncation from 'double' to 'float'
+  GameScreen.cpp
 d:\sfml\space_shooter revenge\space_shooter revenge\gamescreen.cpp(34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   Space_Shooter REVENGE.vcxproj -> D:\sfml\Space_Shooter REVENGE\Debug\Space_Shooter REVENGE.exe
   Space_Shooter REVENGE.vcxproj -> D:\sfml\Space_Shooter REVENGE\Debug\Space_Shooter REVENGE.pdb (Full PDB)

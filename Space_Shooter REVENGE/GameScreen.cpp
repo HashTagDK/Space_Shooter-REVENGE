@@ -137,27 +137,12 @@ void GameScreen::updateScore() {
 
 void GameScreen::enemyController(sf::Time deltaTime) {
 	lifeTimeOfGameScreen += deltaTime; 
-
-	if (m_enemyShipController.enemyBoss.m_stateOfObject == Object_Base_Class::toErase) {
-		timeFromKillingBoss -= deltaTime; 
-	
-		TextWin = sf::Text("YOU HAVE \n\t\tWIN!", font, 80); 
-		TextWin.setPosition(100, 200);
-		if (timeFromKillingBoss.asSeconds() <= 0) {
-			//po zabiciu bosa i p³ybieciu odpowiedniej iloœci czasu 
-			bossDead = true;
-			cout << "YOU HAVE WIN!!!";
-		}
-	}
-	
 	if (positionInQue == 0) {
 		positionInQue++; 
-		//m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 250.f);  
-
-		//m_enemyShipController.AddBoss();
+		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 250.f);  
 	} 
 	
-	/*
+	
 	if (positionInQue == 1 && lifeTimeOfGameScreen.asSeconds() > 10.f) {
 		positionInQue++; 
 		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 180);
@@ -187,28 +172,70 @@ void GameScreen::enemyController(sf::Time deltaTime) {
 	}
 	
 	
-	if (positionInQue == 7 && lifeTimeOfGameScreen.asSeconds() > 55.f) {
+	if (positionInQue == 7 && lifeTimeOfGameScreen.asSeconds() > 60.f) {
 		positionInQue++; 
-		m_enemyShipController.SetRandom(2, 6, 80.f);
+		m_enemyShipController.SetRandom(1, 6, 220.f);
 	}  
 
-	if (positionInQue == 8 && lifeTimeOfGameScreen.asSeconds() > 65.f) {
+	if (positionInQue == 8 && lifeTimeOfGameScreen.asSeconds() > 75.f) {
 		positionInQue++;
-		m_enemyShipController.SetRandom(3, 5, 120.f);
+		m_enemyShipController.SetRandom(2, 5, 220.f);
 	} 
-	if (positionInQue == 9 && lifeTimeOfGameScreen.asSeconds() > 80.f) {
+	if (positionInQue == 9 && lifeTimeOfGameScreen.asSeconds() > 90.f) {
 		positionInQue++;
 		m_stoneFormation.SetRandom(StoneFormations::Normal, 10, 200.f);
 	}
 
-	if (positionInQue == 10 && lifeTimeOfGameScreen.asSeconds() > 100.f) {
+	if (positionInQue == 10 && lifeTimeOfGameScreen.asSeconds() > 120.f) {
 		positionInQue++; 
 		m_stoneFormation.SetArrowFormation(100, 8);
 	} 
 
-	if (positionInQue == 11 && lifeTimeOfGameScreen.asSeconds() > 110.f) {
+	if (positionInQue == 11 && lifeTimeOfGameScreen.asSeconds() > 135.f) {
 		positionInQue++; 
-		m_stoneFormation.SetRandom(StoneFormations::Hard, 5, 200.f);
+		m_stoneFormation.SetRandom(StoneFormations::Hard, 5, 250.f);
+	}
+
+	if (positionInQue == 12 && lifeTimeOfGameScreen.asSeconds() > 145.f) {
+		positionInQue++; 
+		m_enemyShipController.SetRandom(3, 4, 200.f);
+	} 
+
+	if (positionInQue == 13 && lifeTimeOfGameScreen.asSeconds() > 160.f) {
+		positionInQue++; 
+		m_enemyShipController.SetRandom(2, 5, 150.f);
+	}
+
+	if (positionInQue == 14 && lifeTimeOfGameScreen.asSeconds() > 175.f) {
+		positionInQue++; 
+		m_stoneFormation.SetRandom(StoneFormations::Brutal, 6, 250);
+	} 
+
+	if (positionInQue == 15 && lifeTimeOfGameScreen.asSeconds() > 205.f) {
+		positionInQue++; 
+		m_enemyShipController.SetRandom(2, 8, 150.f);
+	}
+
+	if (positionInQue == 16 && lifeTimeOfGameScreen.asSeconds() > 230.f) { 
+		positionInQue++;
+		m_enemyShipController.AddBoss( player_.rect.getPosition());
+	}
+	/*
+	if (positionInQue == 0) {
+		positionInQue++;
+		m_enemyShipController.AddBoss(player_.rect.getPosition());
 	}*/
-	
+
+	if (m_enemyShipController.enemyBoss.m_stateOfObject == Object_Base_Class::toErase) {
+		timeFromKillingBoss -= deltaTime;
+
+		TextWin = sf::Text("YOU HAVE \n\t\tWIN!", font, 80);
+		TextWin.setPosition(100, 200);
+		if (timeFromKillingBoss.asSeconds() <= 0) {
+			//po zabiciu bosa i p³ybieciu odpowiedniej iloœci czasu 
+			bossDead = true;
+			cout << "YOU HAVE WIN!!!";
+		}
+	}
+	//cout << "Time" << lifeTimeOfGameScreen.asSeconds() << endl;
 }

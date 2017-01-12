@@ -5,21 +5,29 @@
 enemyBOSS::enemyBOSS() : 
 	enemyShip1( enemyShip1::Boss1 )
 {
-	timeBetweenDoubleShoot = sf::seconds(2.f);  
-	timeBetweenCenterShoot = sf::seconds(.8f);
+	timeBetweenDoubleShoot = sf::seconds(.8f);  
+	timeBetweenCenterShoot = sf::seconds(.5f);
 	timeFromLastShoot = sf::Time::Zero;
 	
 	timeBetweenLaserAttack = sf::seconds(5.f);
 	
-	rect.setPosition(sf::Vector2f(rect.getPosition().x, 50));  
+	//rect.setPosition(sf::Vector2f(rect.getPosition().x, -1200));  
+	rect.setPosition(sf::Vector2f(-500, -1200));
 
-	hp = 100;
+	hp1 = 2000;
 }
 
 
 enemyBOSS::~enemyBOSS()
 {
+}  
+
+void enemyBOSS::decrementHP(int value) {
+	hp1 -= value;
 } 
+int enemyBOSS::getHP() {
+	return hp1;
+}
 
 void enemyBOSS::setFire(sf::Time deltaTime, fireTilleController& fireTileController) {
 	timeFromLastShoot += deltaTime;  
@@ -43,12 +51,12 @@ void enemyBOSS::setFire(sf::Time deltaTime, fireTilleController& fireTileControl
 		fireTileController.AddFireTile(position, fire_TileNODE::enemyFiretile);
 		
 		timeFromLastShoot = sf::Time::Zero;
-		std::cout << "Stworzono EnemyFIRETILE---B-O-S-S-*******" << endl;
+		//std::cout << "Stworzono EnemyFIRETILE---B-O-S-S-*******" << endl;
 	} 
 
 	if (timeFromLastLaserAttack > timeBetweenLaserAttack) {
 		setLaserAttack(fireTileController); 
-		cout << "LAser Atack" << endl;
+		//cout << "LAser Atack" << endl;
 		timeFromLastLaserAttack = sf::Time::Zero;
 	}
 		
@@ -60,7 +68,7 @@ void enemyBOSS::setLaserAttack(fireTilleController& fireTileController) {
 }
 
 void enemyBOSS::updateBossPosition(sf::Vector2f playerPosition, sf::Time deltaTime) {
-	fastOfTracking = .9;
+	fastOfTracking = 1.1;
 	sf::Vector2f move; 
 	float x_pos;
 	move = playerPosition - rect.getPosition();  

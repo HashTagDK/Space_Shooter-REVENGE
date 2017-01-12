@@ -17,7 +17,8 @@ public:
 	float hp;
 	int score; 
 
-	void setTilesPerSecond(float decrement);
+	void setTilesPerSecond(float decrement); 
+	float getTilePerSoecon();
 	bool isEnableShoot();
 private :  
 	bool playerShoot = false;

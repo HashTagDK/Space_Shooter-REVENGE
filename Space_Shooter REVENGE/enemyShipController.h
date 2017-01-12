@@ -15,7 +15,7 @@ public:
 	//Enemy formation 
 	void AddSingleEnemy( sf::Vector2f position ); 
 	void SetRandom(int amountInRow, int aomountOfRow, float spaceBetweenRows); 
-	void AddBoss(); 
+	void AddBoss(sf::Vector2f playerPos); 
 	sf::Vector2f getBossPos();
 	enemyBOSS enemyBoss;
 private: 

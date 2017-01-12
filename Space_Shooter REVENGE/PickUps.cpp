@@ -45,7 +45,7 @@ PickUps::PickUps() :
 		pickUpWeaponUpExample.m_stateOfObject = Object_Base_Class::Active;
 		pickUpWeaponUpExample.movementSpeed = 70.f;
 
-		pickUpWeaponUpExample.setScoreValue(.1f);
+		pickUpWeaponUpExample.setScoreValue(.05f);
 		cout << "weapon++";
 	} 
 	/*--------------------Speed-UP---------------------------------------------*/
@@ -58,7 +58,7 @@ PickUps::PickUps() :
 		pickUpSpeedUpExample.m_stateOfObject = Object_Base_Class::Active;
 		pickUpSpeedUpExample.movementSpeed = 70.f;
 
-		pickUpSpeedUpExample.setScoreValue(25.f);
+		pickUpSpeedUpExample.setScoreValue(10.f);
 		cout << "weapon++";
 	}
 }
@@ -72,6 +72,7 @@ void PickUps::AddPickUp(sf::Vector2f position) {
 	counterOfKilledEnemy %= perioidBetweenPickUpDifferentThanCoin; 
 	cout << "Perioid: " << counterOfKilledEnemy<< endl;
 	
+	position += sf::Vector2f(5.f, 5.f);
 	int randPickUp;
 	if (counterOfKilledEnemy == 0) {
 		do 

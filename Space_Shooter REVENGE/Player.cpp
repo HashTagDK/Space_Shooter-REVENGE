@@ -8,7 +8,7 @@ Player::Player()
 	score = 0;
 
 	move_vector = sf::Vector2f(0, 0);
-	movementSpeed = 500.f;
+	movementSpeed = 250.f;
 	rect.setSize(sf::Vector2f(45, 45)); 
 	rect.setPosition(240, 750); 
 	sprite.setOrigin((rect.getSize().x / 2), (rect.getSize().y / 2));
@@ -39,11 +39,11 @@ void Player::handleInput() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && rect.getPosition().y < 770) {
 		this->move_vector.y = 1;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && rect.getPosition().x < 455) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && rect.getPosition().x < 480) {
 		this->move_vector.x = 1;
 		sprite.setTextureRect(sf::IntRect(188, 0, 45, 45));
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && rect.getPosition().x > 30 ) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && rect.getPosition().x > 10 ) {
 		this->move_vector.x = -1;
 		sprite.setTextureRect(sf::IntRect(0, 0, 45, 45));
 	}  
@@ -100,6 +100,10 @@ void Player::updatePlayer(sf::Time deltaTime) {
 void Player::setTilesPerSecond(float decrement) {
 	tilesPerSecond = sf::seconds(tilesPerSecond.asSeconds() - decrement);
 	cout << "tiles per seconds : " << tilesPerSecond.asSeconds() << endl;
+} 
+
+float Player::getTilePerSoecon() {
+	return tilesPerSecond.asSeconds();
 }
 
 

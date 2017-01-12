@@ -58,7 +58,7 @@ void enemyShipController::AddSingleEnemy(sf::Vector2f position) {
 
 /*	*/
 void enemyShipController::SetRandom(int amountInRow, int aomountOfRow, float spaceBetweenRows) {
-	amountInRow %= 5; 
+	amountInRow %= 5 + 1; 
 	//sf::Vector2f positionE = sf::Vector2f(0, 0);
 	struct positions {
 		sf::Vector2f position;
@@ -95,8 +95,8 @@ void enemyShipController::SetRandom(int amountInRow, int aomountOfRow, float spa
 } 
 
 //adding boss 
-void enemyShipController::AddBoss() {
-	enemyShipVector.push_back(enemyBoss); 
+void enemyShipController::AddBoss(sf::Vector2f playerPos) {
+	enemyBoss.rect.setPosition(playerPos.x, 50);
 } 
 
 sf::Vector2f enemyShipController::getBossPos() {

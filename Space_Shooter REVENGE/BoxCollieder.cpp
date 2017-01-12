@@ -133,13 +133,13 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 				if ((*player).hp > 100) (*player).hp = 100;
 			}
 
-			if ((*it).isWeaponAdd()) {
+			if ((*it).isWeaponAdd() && (*player).getTilePerSoecon() > 0.25 ) {
 				//dopisaæ coœ do tego weapon
 				(*player).setTilesPerSecond( (*it).getScore() );
 				
 				cout << "Weapn UP!!!!!!!!";
 			} 
-			if ((*it).isSpeedUp()) {
+			if ((*it).isSpeedUp() && (*player).movementSpeed < 450.f) {
 				(*player).movementSpeed += (*it).getScore(); 
 				cout << "SpeedUP!!!!!!!!!!!!!!";
 			}
