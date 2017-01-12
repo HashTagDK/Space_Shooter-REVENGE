@@ -8,6 +8,7 @@
 class GameOVerScreen : public Screen
 {
 public:
+	
 	GameOVerScreen(int score_);
 	~GameOVerScreen();
 
@@ -16,13 +17,13 @@ public:
 	void update(sf::Time delta) override;
 	void render(sf::RenderWindow& window) override;
 
-private: 
+private:  
 	int score;
 	sf::Text scoreText;
 	sf::Font font;
 	sf::Texture backgoundTexture;
 	sf::Sprite backgroundSprite; 
-
+	int currentLVL;
 	MusicController musicController;
 };
 

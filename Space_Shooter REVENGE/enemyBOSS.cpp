@@ -5,15 +5,15 @@
 enemyBOSS::enemyBOSS() : 
 	enemyShip1( enemyShip1::Boss1 )
 {
-	timeBetweenDoubleShoot = sf::seconds(2.f); 
+	timeBetweenDoubleShoot = sf::seconds(2.f);  
+	timeBetweenCenterShoot = sf::seconds(.8f);
 	timeFromLastShoot = sf::Time::Zero;
 	
 	timeBetweenLaserAttack = sf::seconds(5.f);
 	
-	rect.setPosition(sf::Vector2f(rect.getPosition().x, 50)); 
-	
-	
+	rect.setPosition(sf::Vector2f(rect.getPosition().x, 50));  
 
+	hp = 100;
 }
 
 
@@ -23,11 +23,18 @@ enemyBOSS::~enemyBOSS()
 
 void enemyBOSS::setFire(sf::Time deltaTime, fireTilleController& fireTileController) {
 	timeFromLastShoot += deltaTime;  
-	timeFromLastLaserAttack += deltaTime;
-
+	timeFromLastLaserAttack += deltaTime; 
+	timeFromLastCenterShoot += deltaTime;
+	sf::Vector2f position = rect.getPosition();
+	sf::Vector2f size = rect.getSize();
+	
+	if (timeFromLastCenterShoot > timeBetweenCenterShoot) {
+		position += sf::Vector2f(((size.x / 5)*2 + 5.f), size.y / 4);
+		timeFromLastCenterShoot = sf::Time::Zero;
+		fireTileController.AddFireTile(position, fire_TileNODE::enemyFiretile);
+	}
 	if ( timeFromLastShoot > timeBetweenDoubleShoot) {
-		sf::Vector2f position = rect.getPosition(); 
-		sf::Vector2f size = rect.getSize();
+		
 		position += sf::Vector2f((size.x / 5 + 5.f), size.y / 4);
 
 		fireTileController.AddFireTile(position, fire_TileNODE::enemyFiretile);
@@ -63,4 +70,8 @@ void enemyBOSS::updateBossPosition(sf::Vector2f playerPosition, sf::Time deltaTi
 	if (m_stateOfObject == Object_Base_Class::Active) {
 		rect.setPosition(move);
 	}
+} 
+
+sf::Vector2f enemyBOSS::getPosition() {
+	return rect.getPosition();
 }

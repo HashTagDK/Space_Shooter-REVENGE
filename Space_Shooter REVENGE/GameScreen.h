@@ -54,6 +54,14 @@ private:
 
 	void enemyController(sf::Time deltaTime);
 	sf::Time lifeTimeOfGameScreen;
-	int positionInQue;
+	int positionInQue; 
+
+	//czas po na zebrania pick upów po zabiciu bossa i przejscia do nastêpnego lvl 
+	sf::Time timeFromKillingBoss; 
+
+	sf::Text TextWin;
+	sf::Font font; 
+
+	bool bossDead = false;
 };
 

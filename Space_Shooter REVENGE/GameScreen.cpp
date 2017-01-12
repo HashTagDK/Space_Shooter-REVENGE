@@ -4,6 +4,15 @@
 
 GameScreen::GameScreen()
 {
+	if (!font.loadFromFile("..\\\\font\\ARCADECLASSIC.ttf"))
+		cout << "Nie wczytano czcionki!!!" << endl;
+	else {
+		
+		TextWin = sf::Text(" ", font, 40);
+	}
+	TextWin.setPosition(220, 400);
+
+		//Text = sf::Text("YOU HAVE WIN!!!!!", font, 40);
 	//backGround 
 	if (!backgorund[0].texture.loadFromFile("..\\\\sprite\\background1.png"))
 		cout << "B³a¹d przy wczytywnaiu tekstury t³a";
@@ -42,7 +51,8 @@ GameScreen::GameScreen()
 	//Formations
 	//m_stoneFormation.SetSingleStone(sf::Vector2f(50, 10));
 	positionInQue = 0;
-	lifeTimeOfGameScreen = sf::Time::Zero; 
+	lifeTimeOfGameScreen = sf::Time::Zero;  
+	timeFromKillingBoss = sf::seconds(5.f);
 }
 
 
@@ -61,7 +71,9 @@ void GameScreen::handleInput(sf::RenderWindow& window) {
 
 void GameScreen::update(sf::Time delta)
 {
-	m_boxCollider.DetectCollision(&player_, &m_stoneFormation.m_stoneVector, &m_pickups.pickUpVector, &m_pickups, &m_fireTilleController, m_enemyShipController.enemyShipVector);
+	m_boxCollider.DetectCollision(&player_, &m_stoneFormation.m_stoneVector, &m_pickups.pickUpVector, 
+									&m_pickups, &m_fireTilleController, m_enemyShipController.enemyShipVector, 
+									m_enemyShipController.enemyBoss);
 	player_.update(delta);
 	m_stoneFormation.update(delta);
 	//backgorund
@@ -78,11 +90,11 @@ void GameScreen::update(sf::Time delta)
 	//fireTile  
 	if (player_.isEnableShoot())
 		m_fireTilleController.AddFireTile(player_.rect.getPosition(), fire_TileNODE::playerFireTile);
-	m_fireTilleController.update(delta);
+	m_fireTilleController.update(delta, m_enemyShipController.getBossPos());
 	//enemyController-------------------------------------- 
 	m_enemyShipController.update(delta, m_fireTilleController, player_.rect.getPosition());
 	//sprawdzanie czy hp  nie jest poni¿ej 0
-	if (player_.hp <= 0)
+	if (player_.hp <= 0 || bossDead)
 		Game::Screen = std::make_shared<GameOVerScreen>(player_.score);
 }
 
@@ -102,7 +114,9 @@ void GameScreen::render(sf::RenderWindow& window) {
 	window.draw(healthBarSprite);
 
 	window.draw(m_score);
-	player_.render(window);  
+	player_.render(window);   
+
+	window.draw(TextWin);
 }
 
 void GameScreen::updateBackgorund() {
@@ -124,12 +138,25 @@ void GameScreen::updateScore() {
 void GameScreen::enemyController(sf::Time deltaTime) {
 	lifeTimeOfGameScreen += deltaTime; 
 
+	if (m_enemyShipController.enemyBoss.m_stateOfObject == Object_Base_Class::toErase) {
+		timeFromKillingBoss -= deltaTime; 
+	
+		TextWin = sf::Text("YOU HAVE \n\t\tWIN!", font, 80); 
+		TextWin.setPosition(100, 200);
+		if (timeFromKillingBoss.asSeconds() <= 0) {
+			//po zabiciu bosa i p³ybieciu odpowiedniej iloœci czasu 
+			bossDead = true;
+			cout << "YOU HAVE WIN!!!";
+		}
+	}
+	
 	if (positionInQue == 0) {
 		positionInQue++; 
 		//m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 250.f);  
 
 		//m_enemyShipController.AddBoss();
 	} 
+	
 	/*
 	if (positionInQue == 1 && lifeTimeOfGameScreen.asSeconds() > 10.f) {
 		positionInQue++; 

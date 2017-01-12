@@ -15,10 +15,12 @@ public:
 	//Enemy formation 
 	void AddSingleEnemy( sf::Vector2f position ); 
 	void SetRandom(int amountInRow, int aomountOfRow, float spaceBetweenRows); 
-	void AddBoss();
+	void AddBoss(); 
+	sf::Vector2f getBossPos();
+	enemyBOSS enemyBoss;
 private: 
 	enemyShip1 enemyExample; 
-	enemyBOSS enemyBoss;
+	
 
 	void AddEnemy(sf::Vector2f position);
 	sf::Time timeBetweenShoot;

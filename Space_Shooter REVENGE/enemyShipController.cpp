@@ -30,17 +30,17 @@ void enemyShipController::update(sf::Time deltaTime, fireTilleController& fireTi
 		(*it).update(deltaTime); 
 
 	}
-	enemyBoss.setFire(deltaTime, fireTileController);
+	(enemyBoss).setFire(deltaTime, fireTileController);
 	// pod¹¿anie za playerem! 
-	enemyBoss.updateBossPosition(playerPosition, deltaTime);
-	enemyBoss.update(deltaTime);
+	(enemyBoss).updateBossPosition(playerPosition, deltaTime);
+	(enemyBoss).update(deltaTime);
 }
 
 void enemyShipController::render(sf::RenderWindow& window_) {
 	for (std::vector<enemyShip1>::iterator it = enemyShipVector.begin(); it != enemyShipVector.end(); it++)
 		(*it).render(window_);
 	//Boss 
-	enemyBoss.render(window_);
+	(enemyBoss).render(window_);
 }
 
 void enemyShipController::AddEnemy(sf::Vector2f position) {
@@ -97,4 +97,8 @@ void enemyShipController::SetRandom(int amountInRow, int aomountOfRow, float spa
 //adding boss 
 void enemyShipController::AddBoss() {
 	enemyShipVector.push_back(enemyBoss); 
+} 
+
+sf::Vector2f enemyShipController::getBossPos() {
+	return (enemyBoss).getPosition();
 }

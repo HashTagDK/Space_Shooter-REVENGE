@@ -11,8 +11,26 @@ BoxCollieder::~BoxCollieder()
 {
 }
 
-void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVector, vector<PickUpNode> * pickUps, PickUps * pickUpContoller, fireTilleController *fireTileVector_, vector<enemyShip1> &enemyShipVector) {
+void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVector, 
+	vector<PickUpNode> * pickUps, PickUps * pickUpContoller, fireTilleController *fireTileVector_, 
+	vector<enemyShip1> &enemyShipVector, enemyBOSS& boss) {
 
+	//fireTile vs BOSS 
+	for (std::vector<fire_TileNODE>::iterator it2 = (*fireTileVector_).fireTileVector.begin();
+		it2 != (*fireTileVector_).fireTileVector.end(); it2++) {
+		if ( boss.rect.getGlobalBounds().intersects((*it2).rect.getGlobalBounds()) && (*it2).getTypeOfFireTile() == fire_TileNODE::playerFireTile ) {
+			boss.decrementHP((*it2).Damage);
+			(*it2).m_stateOfObject = Object_Base_Class::toErase; 
+
+			(*pickUpContoller).incrementCounterOfKilledEnemy();
+			// adding pick up
+			(*pickUpContoller).AddPickUp((*it2).rect.getPosition());
+			musicController.play_destroy(); 
+
+			if (boss.getHP() <= 0)
+				boss.m_stateOfObject = Object_Base_Class::toErase;
+		}
+	}
 	// stone vector-----------------------------------------------------------------------------------------------------------------------------
 	for (std::vector<StoneNode>::iterator it = (*stoneVector).begin(); it != (*stoneVector).end(); it++) {
 		if ((*player).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) && (*it).m_stateOfObject == Object_Base_Class::Active) {
@@ -49,6 +67,9 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 	}
 
 	//enemyVector-------------------------------------------------------------------------------------------------------------------------------------
+	if ((*player).rect.getGlobalBounds().intersects(boss.rect.getGlobalBounds()) && boss.m_stateOfObject == Object_Base_Class::Active) {
+		(*player).hp = 0;
+	}
 	for (vector<enemyShip1>::iterator it = enemyShipVector.begin(); it != enemyShipVector.end(); it++) {
 		if ((*player).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) && (*it).m_stateOfObject == Object_Base_Class::Active) {
 			cout << "Player oberwa³ !" << endl;
@@ -57,7 +78,7 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 			cout << "hp: " << (*player).hp << endl;
 			musicController.play_playerDamadge();
 		}
-		//fireTile playera kolizje z przeciwnikami
+		//fireTile playera kolizje z przeciwnikami 
 		for (std::vector<fire_TileNODE>::iterator it2 = (*fireTileVector_).fireTileVector.begin(); it2 != (*fireTileVector_).fireTileVector.end(); it2++) {
 			if ((*it2).rect.getGlobalBounds().intersects((*it).rect.getGlobalBounds()) 
 				&& (*it).m_stateOfObject == Object_Base_Class::Active 
@@ -71,14 +92,11 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 					(*it).m_stateOfObject = Object_Base_Class::toErase;
 					cout << "!!!!!!!!!!!!!!!--DEAD BOSSS--!!!!!!!!!!!!";
 				}
-					
 				
-
 				(*pickUpContoller).incrementCounterOfKilledEnemy();
 				// adding pick up
 				(*pickUpContoller).AddPickUp((*it).rect.getPosition());
 				musicController.play_destroy();
-
 			} 
 			
 
@@ -129,11 +147,13 @@ void BoxCollieder::DetectCollision(Player *player, vector<StoneNode> *stoneVecto
 		}
 	}
 
-	GarbagCollector(&(*fireTileVector_).fireTileVector, &(*stoneVector), &(*pickUps), enemyShipVector);
+	GarbagCollector(&(*fireTileVector_).fireTileVector, &(*stoneVector), &(*pickUps), enemyShipVector, &boss);
 }
 
-void BoxCollieder::GarbagCollector(vector<fire_TileNODE> *fireTileVector, vector<StoneNode> *stoneVector, vector<PickUpNode> *pickUp, vector<enemyShip1> &enemyShipVector) {
-	bool destroy = false;
+void BoxCollieder::GarbagCollector(vector<fire_TileNODE> *fireTileVector, vector<StoneNode> *stoneVector, 
+	vector<PickUpNode> *pickUp, vector<enemyShip1> &enemyShipVector,
+	enemyBOSS* boss) 
+{
 	for (std::vector<StoneNode>::iterator it = (*stoneVector).begin(); it != (*stoneVector).end();) {
 		if ((*it).m_stateOfObject == Object_Base_Class::toErase || (*it).rect.getPosition().y  > 830.f) {
 			it = (*stoneVector).erase(it);
@@ -162,6 +182,9 @@ void BoxCollieder::GarbagCollector(vector<fire_TileNODE> *fireTileVector, vector
 		else
 			it++;
 	} 
-
+	// usuniêcie bosa!
+	if ((*boss).m_stateOfObject == Object_Base_Class::toErase) {
+		(*boss).rect.setPosition(sf::Vector2f(0, 1200));
+	}
 	
 }

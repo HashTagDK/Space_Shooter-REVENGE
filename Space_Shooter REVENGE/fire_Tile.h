@@ -12,13 +12,15 @@ public:
 	};
 	fire_TileNODE(typeOFFireTile TYPE);
 	~fire_TileNODE();  
-	typeOFFireTile getTypeOfFireTile();
+	typeOFFireTile getTypeOfFireTile(); 
+	sf::Time lifeTimeLaser; 
+	void updateLaser(sf::Time lifeTime, sf::Vector2f bossPosition);
 private:  
 	float damadge = .5f;
-	static sf::Texture textureTile;
+	 sf::Texture textureTile;
 	static int i;
 	typeOFFireTile m_ptypeFire; 
 
-	sf::RectangleShape laserTile;
+	float laserBoost;
 };
 

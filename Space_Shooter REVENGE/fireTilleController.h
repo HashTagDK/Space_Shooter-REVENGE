@@ -7,7 +7,7 @@ public:
 	fireTilleController();
 	~fireTilleController(); 
 
-	void update(sf::Time deltaTime); 
+	void update(sf::Time deltaTime, sf::Vector2f bossPos);
 	void render(sf::RenderWindow& window_);  
 	void AddFireTile(sf::Vector2f position, fire_TileNODE::typeOFFireTile type); 
 	void AddLaserAttack(sf::Vector2f position, fire_TileNODE::typeOFFireTile type);

@@ -1,15 +1,12 @@
 #include "fire_Tile.h"
 
-sf::Texture fire_TileNODE::textureTile;
-
-
 
 
 fire_TileNODE::fire_TileNODE(typeOFFireTile TYPE) :
 	m_ptypeFire(TYPE)
 {
 	if (m_ptypeFire == laserAttack) {
-		movementSpeed = 20;
+		movementSpeed = 0;
 		rect.setSize(sf::Vector2f(20, 60));
 		//sprite.setOrigin((rect.getSize().x / 2 + 5), (rect.getSize().y / 2));
 
@@ -19,7 +16,10 @@ fire_TileNODE::fire_TileNODE(typeOFFireTile TYPE) :
 			sprite.setTexture(textureTile);
 			sprite.setTextureRect(sf::IntRect(0, 0, 20, 60));
 			cout << "Stworzona obiekt! laseRRR";
-		}
+		} 
+
+		lifeTimeLaser = sf::seconds(4.f);
+		laserBoost = 1.f;
 	}
 
 	else if (m_ptypeFire == playerFireTile || m_ptypeFire == enemyFiretile) {
@@ -39,7 +39,7 @@ fire_TileNODE::fire_TileNODE(typeOFFireTile TYPE) :
 		if (m_ptypeFire == playerFireTile) {
 			movementSpeed = -500.f;
 		}
-		else if (m_ptypeFire = enemyFiretile) {
+		else if (m_ptypeFire == enemyFiretile) {
 			movementSpeed = 200.f;
 		}
 	
@@ -81,5 +81,15 @@ fire_TileNODE::typeOFFireTile fire_TileNODE::getTypeOfFireTile() {
 	return m_ptypeFire;
 }
 
+void fire_TileNODE::updateLaser(sf::Time lifeTime, sf::Vector2f bossPosition) {
+	sf::Vector2f size; 
+	rect.setPosition(bossPosition);
+	size = rect.getSize(); 
+	size = sf::Vector2f(size.x, size.y*lifeTime.asSeconds()*laserBoost); 
+	size += rect.getSize();
+	rect.setSize(size); 
+	sprite.setScale(size);
+
+}
 
 

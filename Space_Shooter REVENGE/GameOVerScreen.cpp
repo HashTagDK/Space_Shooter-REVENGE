@@ -2,16 +2,17 @@
 
 
 
-GameOVerScreen::GameOVerScreen(int score_) : score(score_)
+GameOVerScreen::GameOVerScreen(int score_) :
+	score(score_)
 {
+
 	if (!backgoundTexture.loadFromFile("..\\\\sprite\\gameover.png"))
 		std::cout << "Nie wczytano textury gameover!!!";
 	else {
 		backgroundSprite.setTextureRect(sf::IntRect(0, 0, 480, 800));
 		backgroundSprite.setTexture(backgoundTexture);
 		backgroundSprite.setPosition(sf::Vector2f(0, 0));
-	} 
-
+	}
 	//ustawianie napisu do score: 
 	if (!font.loadFromFile("..\\\\font\\ARCADECLASSIC.ttf"))
 		cout << "Nie wczytano czcionki!!!" << endl;
