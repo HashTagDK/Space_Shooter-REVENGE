@@ -1,10 +1,10 @@
 #pragma once 
 #include<SFML/Graphics.hpp>
-class Screen
+class IScreen
 {
 public:
-	Screen();
-	~Screen(); 
+	IScreen();
+	~IScreen(); 
 	/*metody czysto wirtualne 
 		nie maj¹ definicji <jedynie deklaracjê>, nie mo¿e zostaæ wyko³ana
 		jest przyrówna do zera aby poinformowaæ kompilator ¿e brak definicji i mo¿liwoœci wyw³ania jest zamierzony

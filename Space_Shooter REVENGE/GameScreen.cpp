@@ -137,6 +137,8 @@ void GameScreen::updateScore() {
 
 void GameScreen::enemyController(sf::Time deltaTime) {
 	lifeTimeOfGameScreen += deltaTime; 
+	
+	
 	if (positionInQue == 0) {
 		positionInQue++; 
 		m_stoneFormation.SetRandom(StoneFormations::veryEasy, 10, 250.f);  

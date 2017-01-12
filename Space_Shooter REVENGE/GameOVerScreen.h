@@ -5,7 +5,7 @@
 #include<string.h>
 #include"MusicController.h"
 
-class GameOVerScreen : public Screen
+class GameOVerScreen : public IScreen
 {
 public:
 	

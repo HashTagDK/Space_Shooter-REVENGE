@@ -2,11 +2,11 @@
 
 
 
-Screen::Screen()
+IScreen::IScreen()
 {
 }
 
 
-Screen::~Screen()
+IScreen::~IScreen()
 {
 }

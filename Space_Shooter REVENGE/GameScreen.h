@@ -12,7 +12,7 @@
 #include"PickUps.h"
 #include"enemyShipController.h"
 
-class GameScreen : public Screen
+class GameScreen : public IScreen
 {
 public:
 	GameScreen();

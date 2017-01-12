@@ -23,7 +23,7 @@ public:
 	static const int Height = 800; 
 
 	/*Wskaünik na interfejs z metodami wirtualnymi*/
-	static std::shared_ptr<Screen> Screen; 
+	static std::shared_ptr<IScreen> Screen; 
 	//void changeScreen()
 private:
 	sf::RenderWindow window_; 

@@ -2,7 +2,7 @@
 #include"Screen.h"
 #include"Game.h" 
 #include"GameScreen.h"
-class StartScreen : public Screen
+class StartScreen : public IScreen
 {
 public:
 	StartScreen();
